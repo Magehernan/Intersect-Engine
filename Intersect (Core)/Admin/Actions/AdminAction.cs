@@ -19,8 +19,13 @@ namespace Intersect.Admin.Actions
     [Union(12, typeof(WarpToMeAction))]
     public abstract class AdminAction
     {
+        protected AdminAction(AdminActions action)
+        {
+            Action = action;
+        }
+
         [Key(0)]
-        public abstract AdminActions Action { get; }
+        public AdminActions Action { get; }
 
     }
 

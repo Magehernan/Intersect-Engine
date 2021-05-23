@@ -17,6 +17,7 @@ namespace Intersect.Network
         private readonly MessagePackSerializerOptions mOptions  = MessagePackSerializerOptions.Standard.
             WithResolver(MessagePack.Resolvers.CompositeResolver.Create(
                 new IFormatterResolver[] { 
+                    Resolvers.GeneratedResolver.Instance,
                     MessagePack.Resolvers.NativeGuidResolver.Instance, 
                     MessagePack.Resolvers.NativeDateTimeResolver.Instance, 
                     MessagePack.Resolvers.NativeDecimalResolver.Instance, 
@@ -24,16 +25,17 @@ namespace Intersect.Network
                 )
             );
 
-        private readonly MessagePackSerializerOptions mCompressedOptions = MessagePackSerializerOptions.Standard.WithCompression(MessagePackCompression.Lz4Block);
+        private readonly MessagePackSerializerOptions mCompressedOptions = MessagePackSerializerOptions.Standard.WithCompression(MessagePackCompression.Lz4Block)
+            .WithResolver(Resolvers.GeneratedResolver.Instance);
 
         public byte[] Serialize(IntersectPacket pkt)
         {
             var packedPacket = new PackedIntersectPacket(pkt)
             {
-                Data = MessagePackSerializer.Serialize((object)pkt, mOptions)
+                Data = MessagePackSerializer.Serialize(pkt?.GetType(), pkt, mOptions)
             };
 
-            return MessagePackSerializer.Serialize((object)packedPacket, mCompressedOptions);
+            return MessagePackSerializer.Serialize(packedPacket, mCompressedOptions);
         }
 
         public object Deserialize(byte[] data)

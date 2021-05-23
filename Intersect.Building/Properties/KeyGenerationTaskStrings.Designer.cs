@@ -97,6 +97,15 @@ namespace Intersect.Building.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Failed to write new public key in Unity folder..
+        /// </summary>
+        internal static string ErrorWritingPublicKeyUnity {
+            get {
+                return ResourceManager.GetString("ErrorWritingPublicKeyUnity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to GenerateEachBuild is false and keys already exist in {0}, skipping..
         /// </summary>
         internal static string KeysAlreadyExist {

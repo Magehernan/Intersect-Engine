@@ -70,6 +70,7 @@ namespace Intersect.Building
 
             var pathPrivateKey = Path.Combine(OutputDirectory, "network.handshake.bkey");
             var pathPublicKey = Path.Combine(OutputDirectory, "network.handshake.bkey.pub");
+            var pathPublicKeyUnity = Path.Combine("..\\Intersect-Client-Unity\\Assets\\IntersectResources", "network.handshake.bkey.pub.txt");
 
             using (var rsa = new RSACryptoServiceProvider(KeySize))
             {
@@ -80,7 +81,10 @@ namespace Intersect.Building
                     {
                         if (File.Exists(pathPublicKey))
                         {
-                            return true;
+                            if (File.Exists(pathPublicKeyUnity))
+                            {
+                                return true;
+                            }
                         }
 
                         Log?.LogWarning(KeyGenerationTaskStrings.PublicKeyMissing);
@@ -141,6 +145,21 @@ namespace Intersect.Building
                 catch (Exception exception)
                 {
                     Log?.LogError(KeyGenerationTaskStrings.ErrorWritingPublicKey);
+                    Log?.LogErrorFromException(exception);
+
+                    return false;
+                }
+
+                try
+                {
+                    using (var stream = File.OpenWrite(pathPublicKeyUnity))
+                    {
+                        publicKey.Write(stream);
+                    }
+                }
+                catch (Exception exception)
+                {
+                    Log?.LogError(KeyGenerationTaskStrings.ErrorWritingPublicKeyUnity);
                     Log?.LogErrorFromException(exception);
 
                     return false;

@@ -1,0 +1,13 @@
+<linker>
+  <assembly fullname="Ceras" preserve="all"/>
+  <assembly fullname="Intersect Core" preserve="all"/>
+  <assembly fullname="Intersect.Network" preserve="all"/>
+  <assembly fullname="MessagePack" preserve="all"/>
+  <assembly fullname="MessagePack.Annotation" preserve="all"/>
+  <assembly fullname="Lidgren.Network" preserve="all"/>
+  <assembly fullname="Assembly-CSharp-firstpass" preserve="all"/>
+
+  <assembly fullname="System.Core">
+	<type fullname="System.Linq.Expressions.Interpreter.LightLambda" preserve="all" />
+  </assembly>
+</linker>

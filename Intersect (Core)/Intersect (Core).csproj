@@ -66,6 +66,9 @@
     <Prefer32Bit>false</Prefer32Bit>
     <RunCodeAnalysis>false</RunCodeAnalysis>
   </PropertyGroup>
+  <PropertyGroup>
+    <RunPostBuildEvent>OnOutputUpdated</RunPostBuildEvent>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Ceras, Version=4.0.40.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Ceras.4.0.40\lib\net45\Ceras.dll</HintPath>
@@ -353,6 +356,7 @@
     <Compile Include="Network\MessagePacker.cs" />
     <Compile Include="Network\IPacketHandler.cs" />
     <Compile Include="Network\IPacketSender.cs" />
+    <Compile Include="Network\MessagePackGeneratedFormatter.cs" />
     <Compile Include="Network\NetworkStatus.cs" />
     <Compile Include="Network\PackedIntersectPacket.cs" />
     <Compile Include="Network\PacketDispatcher.cs" />
@@ -751,6 +755,12 @@
     <Error Condition="!Exists('..\packages\Microsoft.NetFramework.Analyzers.3.0.0\build\Microsoft.NetFramework.Analyzers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.NetFramework.Analyzers.3.0.0\build\Microsoft.NetFramework.Analyzers.props'))" />
     <Error Condition="!Exists('..\packages\Microsoft.CodeAnalysis.FxCopAnalyzers.3.0.0\build\Microsoft.CodeAnalysis.FxCopAnalyzers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeAnalysis.FxCopAnalyzers.3.0.0\build\Microsoft.CodeAnalysis.FxCopAnalyzers.props'))" />
   </Target>
+  <PropertyGroup>
+    <PreBuildEvent>"$(SolutionDir)MessagePackGenerator\mpc.exe" -i "$(SolutionDir)$(ProjectName)" -o "$(ProjectDir)Network\MessagePackGeneratedFormatter.cs" -n "Intersect.Network"</PreBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PostBuildEvent>copy "$(TargetFileName)" "$(SolutionDir)Intersect-Client-Unity\Assets\Plugins\$(TargetFileName)"</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

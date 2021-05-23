@@ -153,4 +153,7 @@
   <data name="ErrorCreatingOutputDirectory" xml:space="preserve">
     <value />
   </data>
+  <data name="ErrorWritingPublicKeyUnity" xml:space="preserve">
+    <value>Failed to write new public key in Unity folder.</value>
+  </data>
 </root>

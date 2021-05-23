@@ -1,0 +1,92 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: spells
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 0
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 2
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: 2b1abc92abe69394ba17c038a85be2f5, type: 3}
+    totalSpriteSurfaceArea: 24576
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 03e30f30dc426a34b949c240901036f8, type: 3}
+  - {fileID: 21300000, guid: 291bd9904e27a954d978cec28127cf25, type: 3}
+  - {fileID: 21300000, guid: 9e6dafb0f535fd545a318eac2aa9ae43, type: 3}
+  - {fileID: 21300000, guid: fd6f0f21bb92a1f448d3d02bde51f6a9, type: 3}
+  - {fileID: 21300000, guid: ba277da3d33010a45a7bf73db775f7d3, type: 3}
+  - {fileID: 21300000, guid: 91ede514da978d74aaa6e5a8e886fb48, type: 3}
+  - {fileID: 21300000, guid: e0fbc034938113c488fecaf80a277fd2, type: 3}
+  - {fileID: 21300000, guid: f7895ba5a7bbd2544b2e8f684436eeb0, type: 3}
+  - {fileID: 21300000, guid: f34310f5d398f9340bb04b778155346f, type: 3}
+  - {fileID: 21300000, guid: 32604616107b6c848bee4495a9deea13, type: 3}
+  - {fileID: 21300000, guid: bfc7ec56843ef3b4eb49cdd1e8f08cb0, type: 3}
+  - {fileID: 21300000, guid: 9d4b29c67399a514ead25857a03dcc5b, type: 3}
+  - {fileID: 21300000, guid: f032fd5850f38d843994be0d277bf203, type: 3}
+  - {fileID: 21300000, guid: fe3f43a850261554da6a3fe352b6b61b, type: 3}
+  - {fileID: 21300000, guid: 7f78537a38ffae04ebcf71c6a11fe60b, type: 3}
+  - {fileID: 21300000, guid: 503b0d7ada3d037419a2c6616b8555f4, type: 3}
+  - {fileID: 21300000, guid: 6ca364aaecd677b4a85022bb0c1e713d, type: 3}
+  - {fileID: 21300000, guid: 131b9b8b7e729cd4d9a378ff0360b362, type: 3}
+  - {fileID: 21300000, guid: 6247839d8ad5f384b9e7bb38beff3980, type: 3}
+  - {fileID: 21300000, guid: 4cef73cdff1dc3f4aa84ec885a5f04d1, type: 3}
+  - {fileID: 21300000, guid: a925abede032d1b4e99fc9672d768e74, type: 3}
+  - {fileID: 21300000, guid: 4ebeefed9e33cf1478eaf4773cb6ec03, type: 3}
+  - {fileID: 21300000, guid: 4fcce48e02dde8446a7d6043e8091551, type: 3}
+  - {fileID: 21300000, guid: f937efaf94d0f004da247ca6edbf19f6, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - Ice_02
+  - Spirit_01
+  - Ice_01
+  - Electric_02
+  - WeaponBuff_02
+  - Spirit_02
+  - Electric_01
+  - Water_02
+  - ProjectileBuff_01
+  - ProjectileBuff_02
+  - Wind_02
+  - Heal_02
+  - Fire_01
+  - Earth_02
+  - Fire_02
+  - Dash
+  - Wind_01
+  - Water_01
+  - Poison_02
+  - Heal_01
+  - Poison_01
+  - WeaponBuff_01
+  - Revive
+  - Earth_01
+  m_RenderDataMap: {}
+  m_Tag: spells
+  m_IsVariant: 0

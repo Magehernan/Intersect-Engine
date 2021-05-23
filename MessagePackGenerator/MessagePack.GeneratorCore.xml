@@ -1,0 +1,551 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MessagePack.GeneratorCore</name>
+    </assembly>
+    <members>
+        <member name="M:MessagePackCompiler.CodeGenerator.GenerateFileAsync(Microsoft.CodeAnalysis.Compilation,System.String,System.String,System.String,System.Boolean,System.String,System.String[])">
+            <summary>
+            Generates the specialized resolver and formatters for the types that require serialization in a given compilation.
+            </summary>
+            <param name="compilation">The compilation to read types from as an input to code generation.</param>
+            <param name="output">The name of the generated source file.</param>
+            <param name="resolverName">The resolver name.</param>
+            <param name="namespace">The namespace for the generated type to be created in. May be null.</param>
+            <param name="useMapMode">A boolean value that indicates whether all formatters should use property maps instead of more compact arrays.</param>
+            <param name="multipleIfDirectiveOutputSymbols">A comma-delimited list of symbols that should surround redundant generated files. May be null.</param>
+            <param name="externalIgnoreTypeNames"> May be null.</param>
+            <returns>A task that indicates when generation has completed.</returns>
+        </member>
+        <member name="T:MessagePackCompiler.Generator.EnumTemplate">
+            <summary>
+            Class to produce the template output
+            </summary>
+        </member>
+        <member name="M:MessagePackCompiler.Generator.EnumTemplate.TransformText">
+            <summary>
+            Create the template output
+            </summary>
+        </member>
+        <member name="T:MessagePackCompiler.Generator.EnumTemplateBase">
+            <summary>
+            Base class for this transformation
+            </summary>
+        </member>
+        <member name="P:MessagePackCompiler.Generator.EnumTemplateBase.GenerationEnvironment">
+            <summary>
+            The string builder that generation-time code is using to assemble generated output
+            </summary>
+        </member>
+        <member name="P:MessagePackCompiler.Generator.EnumTemplateBase.Errors">
+            <summary>
+            The error collection for the generation process
+            </summary>
+        </member>
+        <member name="P:MessagePackCompiler.Generator.EnumTemplateBase.indentLengths">
+            <summary>
+            A list of the lengths of each indent that was added with PushIndent
+            </summary>
+        </member>
+        <member name="P:MessagePackCompiler.Generator.EnumTemplateBase.CurrentIndent">
+            <summary>
+            Gets the current indent we use when adding lines to the output
+            </summary>
+        </member>
+        <member name="P:MessagePackCompiler.Generator.EnumTemplateBase.Session">
+            <summary>
+            Current transformation session
+            </summary>
+        </member>
+        <member name="M:MessagePackCompiler.Generator.EnumTemplateBase.Write(System.String)">
+            <summary>
+            Write text directly into the generated output
+            </summary>
+        </member>
+        <member name="M:MessagePackCompiler.Generator.EnumTemplateBase.WriteLine(System.String)">
+            <summary>
+            Write text directly into the generated output
+            </summary>
+        </member>
+        <member name="M:MessagePackCompiler.Generator.EnumTemplateBase.Write(System.String,System.Object[])">
+            <summary>
+            Write formatted text directly into the generated output
+            </summary>
+        </member>
+        <member name="M:MessagePackCompiler.Generator.EnumTemplateBase.WriteLine(System.String,System.Object[])">
+            <summary>
+            Write formatted text directly into the generated output
+            </summary>
+        </member>
+        <member name="M:MessagePackCompiler.Generator.EnumTemplateBase.Error(System.String)">
+            <summary>
+            Raise an error
+            </summary>
+        </member>
+        <member name="M:MessagePackCompiler.Generator.EnumTemplateBase.Warning(System.String)">
+            <summary>
+            Raise a warning
+            </summary>
+        </member>
+        <member name="M:MessagePackCompiler.Generator.EnumTemplateBase.PushIndent(System.String)">
+            <summary>
+            Increase the indent
+            </summary>
+        </member>
+        <member name="M:MessagePackCompiler.Generator.EnumTemplateBase.PopIndent">
+            <summary>
+            Remove the last indent that was added with PushIndent
+            </summary>
+        </member>
+        <member name="M:MessagePackCompiler.Generator.EnumTemplateBase.ClearIndent">
+            <summary>
+            Remove any indentation
+            </summary>
+        </member>
+        <member name="T:MessagePackCompiler.Generator.EnumTemplateBase.ToStringInstanceHelper">
+            <summary>
+            Utility class to produce culture-oriented representation of an object as a string.
+            </summary>
+        </member>
+        <member name="P:MessagePackCompiler.Generator.EnumTemplateBase.ToStringInstanceHelper.FormatProvider">
+            <summary>
+            Gets or sets format provider to be used by ToStringWithCulture method.
+            </summary>
+        </member>
+        <member name="M:MessagePackCompiler.Generator.EnumTemplateBase.ToStringInstanceHelper.ToStringWithCulture(System.Object)">
+            <summary>
+            This is called from the compile/run appdomain to convert objects within an expression block to a string
+            </summary>
+        </member>
+        <member name="P:MessagePackCompiler.Generator.EnumTemplateBase.ToStringHelper">
+            <summary>
+            Helper to produce culture-oriented representation of an object as a string
+            </summary>
+        </member>
+        <member name="T:MessagePackCompiler.Generator.FormatterTemplate">
+            <summary>
+            Class to produce the template output
+            </summary>
+        </member>
+        <member name="M:MessagePackCompiler.Generator.FormatterTemplate.TransformText">
+            <summary>
+            Create the template output
+            </summary>
+        </member>
+        <member name="T:MessagePackCompiler.Generator.FormatterTemplateBase">
+            <summary>
+            Base class for this transformation
+            </summary>
+        </member>
+        <member name="P:MessagePackCompiler.Generator.FormatterTemplateBase.GenerationEnvironment">
+            <summary>
+            The string builder that generation-time code is using to assemble generated output
+            </summary>
+        </member>
+        <member name="P:MessagePackCompiler.Generator.FormatterTemplateBase.Errors">
+            <summary>
+            The error collection for the generation process
+            </summary>
+        </member>
+        <member name="P:MessagePackCompiler.Generator.FormatterTemplateBase.indentLengths">
+            <summary>
+            A list of the lengths of each indent that was added with PushIndent
+            </summary>
+        </member>
+        <member name="P:MessagePackCompiler.Generator.FormatterTemplateBase.CurrentIndent">
+            <summary>
+            Gets the current indent we use when adding lines to the output
+            </summary>
+        </member>
+        <member name="P:MessagePackCompiler.Generator.FormatterTemplateBase.Session">
+            <summary>
+            Current transformation session
+            </summary>
+        </member>
+        <member name="M:MessagePackCompiler.Generator.FormatterTemplateBase.Write(System.String)">
+            <summary>
+            Write text directly into the generated output
+            </summary>
+        </member>
+        <member name="M:MessagePackCompiler.Generator.FormatterTemplateBase.WriteLine(System.String)">
+            <summary>
+            Write text directly into the generated output
+            </summary>
+        </member>
+        <member name="M:MessagePackCompiler.Generator.FormatterTemplateBase.Write(System.String,System.Object[])">
+            <summary>
+            Write formatted text directly into the generated output
+            </summary>
+        </member>
+        <member name="M:MessagePackCompiler.Generator.FormatterTemplateBase.WriteLine(System.String,System.Object[])">
+            <summary>
+            Write formatted text directly into the generated output
+            </summary>
+        </member>
+        <member name="M:MessagePackCompiler.Generator.FormatterTemplateBase.Error(System.String)">
+            <summary>
+            Raise an error
+            </summary>
+        </member>
+        <member name="M:MessagePackCompiler.Generator.FormatterTemplateBase.Warning(System.String)">
+            <summary>
+            Raise a warning
+            </summary>
+        </member>
+        <member name="M:MessagePackCompiler.Generator.FormatterTemplateBase.PushIndent(System.String)">
+            <summary>
+            Increase the indent
+            </summary>
+        </member>
+        <member name="M:MessagePackCompiler.Generator.FormatterTemplateBase.PopIndent">
+            <summary>
+            Remove the last indent that was added with PushIndent
+            </summary>
+        </member>
+        <member name="M:MessagePackCompiler.Generator.FormatterTemplateBase.ClearIndent">
+            <summary>
+            Remove any indentation
+            </summary>
+        </member>
+        <member name="T:MessagePackCompiler.Generator.FormatterTemplateBase.ToStringInstanceHelper">
+            <summary>
+            Utility class to produce culture-oriented representation of an object as a string.
+            </summary>
+        </member>
+        <member name="P:MessagePackCompiler.Generator.FormatterTemplateBase.ToStringInstanceHelper.FormatProvider">
+            <summary>
+            Gets or sets format provider to be used by ToStringWithCulture method.
+            </summary>
+        </member>
+        <member name="M:MessagePackCompiler.Generator.FormatterTemplateBase.ToStringInstanceHelper.ToStringWithCulture(System.Object)">
+            <summary>
+            This is called from the compile/run appdomain to convert objects within an expression block to a string
+            </summary>
+        </member>
+        <member name="P:MessagePackCompiler.Generator.FormatterTemplateBase.ToStringHelper">
+            <summary>
+            Helper to produce culture-oriented representation of an object as a string
+            </summary>
+        </member>
+        <member name="T:MessagePackCompiler.Generator.ResolverTemplate">
+            <summary>
+            Class to produce the template output
+            </summary>
+        </member>
+        <member name="M:MessagePackCompiler.Generator.ResolverTemplate.TransformText">
+            <summary>
+            Create the template output
+            </summary>
+        </member>
+        <member name="T:MessagePackCompiler.Generator.ResolverTemplateBase">
+            <summary>
+            Base class for this transformation
+            </summary>
+        </member>
+        <member name="P:MessagePackCompiler.Generator.ResolverTemplateBase.GenerationEnvironment">
+            <summary>
+            The string builder that generation-time code is using to assemble generated output
+            </summary>
+        </member>
+        <member name="P:MessagePackCompiler.Generator.ResolverTemplateBase.Errors">
+            <summary>
+            The error collection for the generation process
+            </summary>
+        </member>
+        <member name="P:MessagePackCompiler.Generator.ResolverTemplateBase.indentLengths">
+            <summary>
+            A list of the lengths of each indent that was added with PushIndent
+            </summary>
+        </member>
+        <member name="P:MessagePackCompiler.Generator.ResolverTemplateBase.CurrentIndent">
+            <summary>
+            Gets the current indent we use when adding lines to the output
+            </summary>
+        </member>
+        <member name="P:MessagePackCompiler.Generator.ResolverTemplateBase.Session">
+            <summary>
+            Current transformation session
+            </summary>
+        </member>
+        <member name="M:MessagePackCompiler.Generator.ResolverTemplateBase.Write(System.String)">
+            <summary>
+            Write text directly into the generated output
+            </summary>
+        </member>
+        <member name="M:MessagePackCompiler.Generator.ResolverTemplateBase.WriteLine(System.String)">
+            <summary>
+            Write text directly into the generated output
+            </summary>
+        </member>
+        <member name="M:MessagePackCompiler.Generator.ResolverTemplateBase.Write(System.String,System.Object[])">
+            <summary>
+            Write formatted text directly into the generated output
+            </summary>
+        </member>
+        <member name="M:MessagePackCompiler.Generator.ResolverTemplateBase.WriteLine(System.String,System.Object[])">
+            <summary>
+            Write formatted text directly into the generated output
+            </summary>
+        </member>
+        <member name="M:MessagePackCompiler.Generator.ResolverTemplateBase.Error(System.String)">
+            <summary>
+            Raise an error
+            </summary>
+        </member>
+        <member name="M:MessagePackCompiler.Generator.ResolverTemplateBase.Warning(System.String)">
+            <summary>
+            Raise a warning
+            </summary>
+        </member>
+        <member name="M:MessagePackCompiler.Generator.ResolverTemplateBase.PushIndent(System.String)">
+            <summary>
+            Increase the indent
+            </summary>
+        </member>
+        <member name="M:MessagePackCompiler.Generator.ResolverTemplateBase.PopIndent">
+            <summary>
+            Remove the last indent that was added with PushIndent
+            </summary>
+        </member>
+        <member name="M:MessagePackCompiler.Generator.ResolverTemplateBase.ClearIndent">
+            <summary>
+            Remove any indentation
+            </summary>
+        </member>
+        <member name="T:MessagePackCompiler.Generator.ResolverTemplateBase.ToStringInstanceHelper">
+            <summary>
+            Utility class to produce culture-oriented representation of an object as a string.
+            </summary>
+        </member>
+        <member name="P:MessagePackCompiler.Generator.ResolverTemplateBase.ToStringInstanceHelper.FormatProvider">
+            <summary>
+            Gets or sets format provider to be used by ToStringWithCulture method.
+            </summary>
+        </member>
+        <member name="M:MessagePackCompiler.Generator.ResolverTemplateBase.ToStringInstanceHelper.ToStringWithCulture(System.Object)">
+            <summary>
+            This is called from the compile/run appdomain to convert objects within an expression block to a string
+            </summary>
+        </member>
+        <member name="P:MessagePackCompiler.Generator.ResolverTemplateBase.ToStringHelper">
+            <summary>
+            Helper to produce culture-oriented representation of an object as a string
+            </summary>
+        </member>
+        <member name="F:MessagePackCompiler.Generator.ShouldUseFormatterResolverHelper.PrimitiveTypes">
+            <devremarks>
+            Keep this list in sync with DynamicObjectTypeBuilder.IsOptimizeTargetType.
+            </devremarks>
+        </member>
+        <member name="T:MessagePackCompiler.Generator.StringKeyFormatterTemplate">
+            <summary>
+            Class to produce the template output
+            </summary>
+        </member>
+        <member name="M:MessagePackCompiler.Generator.StringKeyFormatterTemplate.TransformText">
+            <summary>
+            Create the template output
+            </summary>
+        </member>
+        <member name="T:MessagePackCompiler.Generator.StringKeyFormatterTemplateBase">
+            <summary>
+            Base class for this transformation
+            </summary>
+        </member>
+        <member name="P:MessagePackCompiler.Generator.StringKeyFormatterTemplateBase.GenerationEnvironment">
+            <summary>
+            The string builder that generation-time code is using to assemble generated output
+            </summary>
+        </member>
+        <member name="P:MessagePackCompiler.Generator.StringKeyFormatterTemplateBase.Errors">
+            <summary>
+            The error collection for the generation process
+            </summary>
+        </member>
+        <member name="P:MessagePackCompiler.Generator.StringKeyFormatterTemplateBase.indentLengths">
+            <summary>
+            A list of the lengths of each indent that was added with PushIndent
+            </summary>
+        </member>
+        <member name="P:MessagePackCompiler.Generator.StringKeyFormatterTemplateBase.CurrentIndent">
+            <summary>
+            Gets the current indent we use when adding lines to the output
+            </summary>
+        </member>
+        <member name="P:MessagePackCompiler.Generator.StringKeyFormatterTemplateBase.Session">
+            <summary>
+            Current transformation session
+            </summary>
+        </member>
+        <member name="M:MessagePackCompiler.Generator.StringKeyFormatterTemplateBase.Write(System.String)">
+            <summary>
+            Write text directly into the generated output
+            </summary>
+        </member>
+        <member name="M:MessagePackCompiler.Generator.StringKeyFormatterTemplateBase.WriteLine(System.String)">
+            <summary>
+            Write text directly into the generated output
+            </summary>
+        </member>
+        <member name="M:MessagePackCompiler.Generator.StringKeyFormatterTemplateBase.Write(System.String,System.Object[])">
+            <summary>
+            Write formatted text directly into the generated output
+            </summary>
+        </member>
+        <member name="M:MessagePackCompiler.Generator.StringKeyFormatterTemplateBase.WriteLine(System.String,System.Object[])">
+            <summary>
+            Write formatted text directly into the generated output
+            </summary>
+        </member>
+        <member name="M:MessagePackCompiler.Generator.StringKeyFormatterTemplateBase.Error(System.String)">
+            <summary>
+            Raise an error
+            </summary>
+        </member>
+        <member name="M:MessagePackCompiler.Generator.StringKeyFormatterTemplateBase.Warning(System.String)">
+            <summary>
+            Raise a warning
+            </summary>
+        </member>
+        <member name="M:MessagePackCompiler.Generator.StringKeyFormatterTemplateBase.PushIndent(System.String)">
+            <summary>
+            Increase the indent
+            </summary>
+        </member>
+        <member name="M:MessagePackCompiler.Generator.StringKeyFormatterTemplateBase.PopIndent">
+            <summary>
+            Remove the last indent that was added with PushIndent
+            </summary>
+        </member>
+        <member name="M:MessagePackCompiler.Generator.StringKeyFormatterTemplateBase.ClearIndent">
+            <summary>
+            Remove any indentation
+            </summary>
+        </member>
+        <member name="T:MessagePackCompiler.Generator.StringKeyFormatterTemplateBase.ToStringInstanceHelper">
+            <summary>
+            Utility class to produce culture-oriented representation of an object as a string.
+            </summary>
+        </member>
+        <member name="P:MessagePackCompiler.Generator.StringKeyFormatterTemplateBase.ToStringInstanceHelper.FormatProvider">
+            <summary>
+            Gets or sets format provider to be used by ToStringWithCulture method.
+            </summary>
+        </member>
+        <member name="M:MessagePackCompiler.Generator.StringKeyFormatterTemplateBase.ToStringInstanceHelper.ToStringWithCulture(System.Object)">
+            <summary>
+            This is called from the compile/run appdomain to convert objects within an expression block to a string
+            </summary>
+        </member>
+        <member name="P:MessagePackCompiler.Generator.StringKeyFormatterTemplateBase.ToStringHelper">
+            <summary>
+            Helper to produce culture-oriented representation of an object as a string
+            </summary>
+        </member>
+        <member name="T:MessagePackCompiler.Generator.UnionTemplate">
+            <summary>
+            Class to produce the template output
+            </summary>
+        </member>
+        <member name="M:MessagePackCompiler.Generator.UnionTemplate.TransformText">
+            <summary>
+            Create the template output
+            </summary>
+        </member>
+        <member name="T:MessagePackCompiler.Generator.UnionTemplateBase">
+            <summary>
+            Base class for this transformation
+            </summary>
+        </member>
+        <member name="P:MessagePackCompiler.Generator.UnionTemplateBase.GenerationEnvironment">
+            <summary>
+            The string builder that generation-time code is using to assemble generated output
+            </summary>
+        </member>
+        <member name="P:MessagePackCompiler.Generator.UnionTemplateBase.Errors">
+            <summary>
+            The error collection for the generation process
+            </summary>
+        </member>
+        <member name="P:MessagePackCompiler.Generator.UnionTemplateBase.indentLengths">
+            <summary>
+            A list of the lengths of each indent that was added with PushIndent
+            </summary>
+        </member>
+        <member name="P:MessagePackCompiler.Generator.UnionTemplateBase.CurrentIndent">
+            <summary>
+            Gets the current indent we use when adding lines to the output
+            </summary>
+        </member>
+        <member name="P:MessagePackCompiler.Generator.UnionTemplateBase.Session">
+            <summary>
+            Current transformation session
+            </summary>
+        </member>
+        <member name="M:MessagePackCompiler.Generator.UnionTemplateBase.Write(System.String)">
+            <summary>
+            Write text directly into the generated output
+            </summary>
+        </member>
+        <member name="M:MessagePackCompiler.Generator.UnionTemplateBase.WriteLine(System.String)">
+            <summary>
+            Write text directly into the generated output
+            </summary>
+        </member>
+        <member name="M:MessagePackCompiler.Generator.UnionTemplateBase.Write(System.String,System.Object[])">
+            <summary>
+            Write formatted text directly into the generated output
+            </summary>
+        </member>
+        <member name="M:MessagePackCompiler.Generator.UnionTemplateBase.WriteLine(System.String,System.Object[])">
+            <summary>
+            Write formatted text directly into the generated output
+            </summary>
+        </member>
+        <member name="M:MessagePackCompiler.Generator.UnionTemplateBase.Error(System.String)">
+            <summary>
+            Raise an error
+            </summary>
+        </member>
+        <member name="M:MessagePackCompiler.Generator.UnionTemplateBase.Warning(System.String)">
+            <summary>
+            Raise a warning
+            </summary>
+        </member>
+        <member name="M:MessagePackCompiler.Generator.UnionTemplateBase.PushIndent(System.String)">
+            <summary>
+            Increase the indent
+            </summary>
+        </member>
+        <member name="M:MessagePackCompiler.Generator.UnionTemplateBase.PopIndent">
+            <summary>
+            Remove the last indent that was added with PushIndent
+            </summary>
+        </member>
+        <member name="M:MessagePackCompiler.Generator.UnionTemplateBase.ClearIndent">
+            <summary>
+            Remove any indentation
+            </summary>
+        </member>
+        <member name="T:MessagePackCompiler.Generator.UnionTemplateBase.ToStringInstanceHelper">
+            <summary>
+            Utility class to produce culture-oriented representation of an object as a string.
+            </summary>
+        </member>
+        <member name="P:MessagePackCompiler.Generator.UnionTemplateBase.ToStringInstanceHelper.FormatProvider">
+            <summary>
+            Gets or sets format provider to be used by ToStringWithCulture method.
+            </summary>
+        </member>
+        <member name="M:MessagePackCompiler.Generator.UnionTemplateBase.ToStringInstanceHelper.ToStringWithCulture(System.Object)">
+            <summary>
+            This is called from the compile/run appdomain to convert objects within an expression block to a string
+            </summary>
+        </member>
+        <member name="P:MessagePackCompiler.Generator.UnionTemplateBase.ToStringHelper">
+            <summary>
+            Helper to produce culture-oriented representation of an object as a string
+            </summary>
+        </member>
+    </members>
+</doc>

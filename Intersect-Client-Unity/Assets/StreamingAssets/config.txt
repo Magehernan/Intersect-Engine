@@ -1,0 +1,14 @@
+{
+  "Host": "localhost",
+  "Port": 5401,
+  "GameFont": "sourcesansproblack",
+  "EntityNameFont": "sourcesansproblack",
+  "ChatBubbleFont": "sourcesansproblack",
+  "ActionMsgFont": "sourcesansproblack",
+  "UIFont": "sourcesanspro,8",
+  "ChatLines": 100,
+  "MenuMusic": "Farewell2.ogg",
+  "MenuBackground": "background.png",
+  "IntroImages": [],
+  "UpdateUrl": ""
+}

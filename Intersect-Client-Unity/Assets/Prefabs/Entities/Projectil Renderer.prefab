@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8584823009139766878
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1941800862290426690}
+  - component: {fileID: 8199199876475875961}
+  m_Layer: 0
+  m_Name: Projectil Renderer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1941800862290426690
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8584823009139766878}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8199199876475875961
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8584823009139766878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b17524ce8e8c44747afef37662b95e46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myTranform: {fileID: 1941800862290426690}
+  spriteRendererPrefab: {fileID: 4013887727418472046, guid: 908fef3cb2eda754cac0a905208a90f9,
+    type: 3}
+  spriteRendererContainer: {fileID: 1941800862290426690}
+  textName: {fileID: 0}
+  gameObjectName: {fileID: 0}
+  tranformName: {fileID: 0}
+  hpBar: {fileID: 0}
+  gameObjectHPBar: {fileID: 0}
+  castBar: {fileID: 0}
+  gameObjectCastBar: {fileID: 0}
+  targetSpriteRenderer: {fileID: 0}
+  tranformTarget: {fileID: 0}
+  gameObjectTarget: {fileID: 0}
+  chatBubbleParent: {fileID: 0}

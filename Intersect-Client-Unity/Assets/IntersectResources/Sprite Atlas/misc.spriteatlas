@@ -1,0 +1,74 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: misc
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 0
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 2
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: 93a782d5852d7784ebeaf604f6646d2c, type: 3}
+    totalSpriteSurfaceArea: 24200
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 36c90d10ec5bbbe41aab968f046d2bf0, type: 3}
+  - {fileID: 21300000, guid: da41cc309d637704baddccea0f5426ec, type: 3}
+  - {fileID: 21300000, guid: b16d8811e10e3034a90e51541ad2709f, type: 3}
+  - {fileID: 21300000, guid: 62da35615e7a11c438343dcca213c1ba, type: 3}
+  - {fileID: 21300000, guid: 62393232144be204ea39b34831ee278c, type: 3}
+  - {fileID: 21300000, guid: ccfca035c92bcd147ba35ac23b068d10, type: 3}
+  - {fileID: 6526703898722648163, guid: c88c726538e61db4d8d3d280577c5f83, type: 3}
+  - {fileID: -3561148701943319872, guid: c88c726538e61db4d8d3d280577c5f83, type: 3}
+  - {fileID: 21300000, guid: 3139fe95197aec04988c645231b81d35, type: 3}
+  - {fileID: 21300000, guid: 8c815f388fd0cf34b895e7fda2cac684, type: 3}
+  - {fileID: 21300000, guid: d9a503fa1c28e9843be45ab81a557440, type: 3}
+  - {fileID: 21300000, guid: 098d0e4b776090944aaeccb61a109153, type: 3}
+  - {fileID: 21300000, guid: 5e3c79bd1eda6f44ea9d6fc9c19acc7e, type: 3}
+  - {fileID: 21300000, guid: 756f324e5c36f3e4b98f7848890c6a55, type: 3}
+  - {fileID: 21300000, guid: 36529d3f3e93df642bc28fbb2eef2605, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - attributes
+  - castbackground
+  - castbar
+  - chatbubble
+  - chatbubblenotch
+  - spawnicon
+  - target_1
+  - target_0
+  - directions
+  - lighticon
+  - hpbar
+  - hpbackground
+  - shieldbar
+  - transtile
+  - eventicon
+  m_RenderDataMap: {}
+  m_Tag: misc
+  m_IsVariant: 0

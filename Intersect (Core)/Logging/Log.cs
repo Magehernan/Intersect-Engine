@@ -13,8 +13,7 @@ namespace Intersect.Logging
     {
         internal static readonly DateTime Initial = DateTime.Now;
 
-        private static string ExecutableName =>
-            Path.GetFileNameWithoutExtension(Process.GetCurrentProcess().MainModule.FileName);
+        private const string ExecutableName = "Intersect";
 
         public static string SuggestFilename(
             DateTime? time = null,
@@ -51,7 +50,18 @@ namespace Intersect.Logging
                 }
             );
         }
-
+       
+        public static void ChangeDirectory(string directory)
+        {
+            foreach (ILogOutput logOutput in Default.Configuration.Outputs)
+            {
+                if (logOutput is FileOutput fileOutput)
+                {
+                    fileOutput.Filename = $"{directory}/{fileOutput.Filename}";
+                }
+            }
+        }
+        
         public static Logger Pretty { get; internal set; }
 
         public static Logger Default { get; internal set; }

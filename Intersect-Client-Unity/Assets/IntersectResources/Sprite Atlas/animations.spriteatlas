@@ -1,0 +1,76 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: animations
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 0
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 2
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: 372819d6d2d759b43920e9ff08df7bb3, type: 3}
+    totalSpriteSurfaceArea: 206976
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: b114c5504cf48ab4fad26f57d54d2551, type: 3}
+  - {fileID: 21300000, guid: b7bad8901bcfe8d4c983f2c390265190, type: 3}
+  - {fileID: 21300000, guid: 63fc58e0336a33544a217d940589d326, type: 3}
+  - {fileID: 21300000, guid: 39708de188abbc642a2f58d413a2b0e3, type: 3}
+  - {fileID: 21300000, guid: f92a8cb328cb3f74cb356d35d62d67f5, type: 3}
+  - {fileID: 21300000, guid: a47120c4999ea2c4080cf6727eb17d54, type: 3}
+  - {fileID: 21300000, guid: 4181c75645fe17d40bb8f677222a3a62, type: 3}
+  - {fileID: 21300000, guid: 20fc4496197bf7a4880445c7f827d5e8, type: 3}
+  - {fileID: 21300000, guid: 6611c4a9d03f428479c3b4d82d4b1268, type: 3}
+  - {fileID: 21300000, guid: 500a86aa990bd4344a3d56fc12d2053e, type: 3}
+  - {fileID: 21300000, guid: e669997bef502c44ab7142c0a841f616, type: 3}
+  - {fileID: 21300000, guid: 8127e8fbb9ce0d140b7820de6b96669f, type: 3}
+  - {fileID: 21300000, guid: 6167ea6cb0e6f144083202d80a218b81, type: 3}
+  - {fileID: 21300000, guid: a8f19bbd03ed62e499eec453321e6394, type: 3}
+  - {fileID: 21300000, guid: ea70e50f38ad05440b6c846ba7f9821f, type: 3}
+  - {fileID: 21300000, guid: 78d8e1fffe339884ab15ec4a540182b9, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - Rings
+  - Emote_Laugh
+  - Bubbles
+  - Particles
+  - Emote_Wink
+  - Healing
+  - Campfire
+  - Emote_Concern
+  - Emote_Smile
+  - Slashing
+  - Blood
+  - Bonetoss
+  - Strike
+  - Campfire_Alt
+  - Emote_LookAround
+  - Rings_Reversed
+  m_RenderDataMap: {}
+  m_Tag: animations
+  m_IsVariant: 0

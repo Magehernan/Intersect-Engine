@@ -4,6 +4,8 @@ using System;
 namespace Intersect.Network.Packets.Server
 {
     [MessagePackObject]
+    [Union(0, typeof(BagUpdatePacket))]
+    [Union(1, typeof(BankUpdatePacket))]
     public class InventoryUpdatePacket : IntersectPacket
     {
         //Parameterless Constructor for MessagePack
