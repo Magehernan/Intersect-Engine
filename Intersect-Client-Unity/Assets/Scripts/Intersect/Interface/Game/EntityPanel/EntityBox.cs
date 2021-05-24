@@ -31,6 +31,8 @@ namespace Intersect.Client.Interface.Game.EntityPanel
         [SerializeField]
         private TextMeshProUGUI textMap;
         [SerializeField]
+        private TextMeshProUGUI textEventDesc;
+        [SerializeField]
         private TextMeshProUGUI labelHP;
         [SerializeField]
         private TextMeshProUGUI textHP;
@@ -188,51 +190,33 @@ namespace Intersect.Client.Interface.Game.EntityPanel
         private void SetupEntityElements()
         {
             buttonGuild.gameObject.SetActive(false);
-            buttonTrade.gameObject.SetActive(false);
-            buttonParty.gameObject.SetActive(false);
-            buttonFriend.gameObject.SetActive(false);
-            switch (entityType)
+
+            bool isOtherPlayer = entityType == EntityTypes.Player && Globals.Me != MyEntity;
+            buttonTrade.gameObject.SetActive(isOtherPlayer);
+            buttonParty.gameObject.SetActive(isOtherPlayer);
+            buttonFriend.gameObject.SetActive(isOtherPlayer);
+
+            bool isMe = Globals.Me == MyEntity;
+            fillXP.gameObject.SetActive(isMe);
+            labelXP.enabled = isMe;
+            textXP.enabled = isMe;
+            textMap.enabled = isMe;
+
+            bool isEvent = entityType == EntityTypes.Event;
+            fillMP.gameObject.SetActive(!isEvent);
+            labelMP.enabled = !isEvent;
+            textMP.enabled = !isEvent;
+            fillHP.gameObject.SetActive(!isEvent);
+            labelHP.enabled = !isEvent;
+            textHP.enabled = !isEvent;
+            textMap.enabled = !isEvent;
+
+            textEventDesc.enabled = isEvent;
+            if (isEvent)
             {
-                case EntityTypes.Player:
-                {
-                    if (Globals.Me != MyEntity)
-                    {
-                        buttonTrade.gameObject.SetActive(true);
-                        buttonParty.gameObject.SetActive(true);
-                        buttonFriend.gameObject.SetActive(true);
-                    }
-                    else
-                    {
-                        fillXP.gameObject.SetActive(false);
-                        labelXP.enabled = false;
-                        textXP.enabled = false;
-                        textMap.enabled = false;
-                    }
-                }
-                break;
-                case EntityTypes.GlobalEntity:
-                {
-                    fillXP.gameObject.SetActive(false);
-                    labelXP.enabled = false;
-                    textXP.enabled = false;
-                    textMap.enabled = false;
-                }
-                break;
-                case EntityTypes.Event:
-                {
-                    fillXP.gameObject.SetActive(false);
-                    labelXP.enabled = false;
-                    textXP.enabled = false;
-                    fillMP.gameObject.SetActive(false);
-                    labelMP.enabled = false;
-                    textMP.enabled = false;
-                    fillHP.gameObject.SetActive(false);
-                    labelHP.enabled = false;
-                    textHP.enabled = false;
-                    textMap.enabled = false;
-                }
-                break;
+                textEventDesc.text = ((Entities.Events.Event)MyEntity).Desc;
             }
+
             textName.text = MyEntity.Name;
         }
 

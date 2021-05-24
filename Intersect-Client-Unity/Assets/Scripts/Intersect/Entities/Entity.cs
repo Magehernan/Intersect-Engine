@@ -38,8 +38,6 @@ namespace Intersect.Client.Entities
 
             ChatBubble,
 
-            Class,
-
             Guild
 
         }
@@ -910,6 +908,11 @@ namespace Intersect.Client.Entities
                 return; //Don't draw if the entity is hidden
             }
 
+            DrawName(null);
+            DrawHpBar();
+            DrawCastingBar();
+
+
             WorldRect.Reset();
             MapInstance map = MapInstance.Get(CurrentMap);
             if (map == null || !Globals.GridMaps.Contains(CurrentMap))
@@ -1003,7 +1006,7 @@ namespace Intersect.Client.Entities
             Utils.Draw.Rectangle(WorldRect, Color.White);
 
             entityRender.SetPosition(worldPos.X, worldPos.Y);
-
+            entityRender.SetHeight(texture.SpriteHeight);
 
             //Order the layers of paperdolls and sprites
             List<string> paperdollOrder = Options.PaperdollOrder[spriteY];
@@ -1213,19 +1216,19 @@ namespace Intersect.Client.Entities
                 }
             }
 
-            //Check for stealth amoungst status effects.
-            for (int n = 0; n < Status.Count; n++)
-            {
-                //If unit is stealthed, don't render unless the entity is the player.
-                if (Status[n].Type == StatusTypes.Stealth)
-                {
-                    if (this != Globals.Me && !(this is Player player && Globals.Me.IsInMyParty(player)))
-                    {
-                        entityRender.HideName();
-                        return;
-                    }
-                }
-            }
+            ////Check for stealth amoungst status effects.
+            //for (int n = 0; n < Status.Count; n++)
+            //{
+            //    //If unit is stealthed, don't render unless the entity is the player.
+            //    if (Status[n].Type == StatusTypes.Stealth)
+            //    {
+            //        if (this != Globals.Me && !(this is Player player && Globals.Me.IsInMyParty(player)))
+            //        {
+            //            entityRender.HideName();
+            //            return;
+            //        }
+            //    }
+            //}
 
             MapInstance map = MapInstance;
             if (map == null)
@@ -1233,59 +1236,53 @@ namespace Intersect.Client.Entities
                 return;
             }
 
-            var name = Name;
+            string name = Name;
             if ((this is Player && Options.Player.ShowLevelByName) || (!(this is Player) && Options.Npc.ShowLevelByName))
             {
                 name = Strings.GameWindow.EntityNameAndLevel.ToString(Name, Level);
             }
 
-            float y = GetLabelLocation(LabelType.Name);
-
             entityRender.DrawName(name, textColor);
-            entityRender.SetNamePosition(0, y);
         }
 
-        public float GetLabelLocation(LabelType type)
-        {
-            float y = 100;
-            switch (type)
-            {
-                case LabelType.Header:
-                    if (string.IsNullOrWhiteSpace(HeaderLabel.Text))
-                    {
-                        return GetLabelLocation(LabelType.Name);
-                    }
+        //public float GetLabelLocation(LabelType type)
+        //{
+        //    float y = 100;
+        //    switch (type)
+        //    {
+        //        case LabelType.Header:
+        //            if (string.IsNullOrWhiteSpace(HeaderLabel.Text))
+        //            {
+        //                return GetLabelLocation(LabelType.Name);
+        //            }
 
-                    y = GetLabelLocation(LabelType.Name);
+        //            y = GetLabelLocation(LabelType.Name);
 
-                    break;
-                case LabelType.Footer:
-                    if (string.IsNullOrWhiteSpace(FooterLabel.Text))
-                    {
-                        break;
-                    }
+        //            break;
+        //        case LabelType.Footer:
+        //            if (string.IsNullOrWhiteSpace(FooterLabel.Text))
+        //            {
+        //                break;
+        //            }
 
-                    break;
-                case LabelType.Name:
-                case LabelType.Guild:
-                    if (Texture != null)
-                    {
-                        y = Texture.SpriteHeight / Options.TileHeight * 100f;
-                    }
-                    y += 100f;
-                    break;
-                case LabelType.ChatBubble:
-                    y = GetLabelLocation(LabelType.Header) - 4;
+        //            break;
+        //        case LabelType.Name:
+        //        case LabelType.Guild:
+        //            if (Texture != null)
+        //            {
+        //                y = Texture.SpriteHeight;
+        //            }
+        //            y += 30f;
+        //            break;
+        //        case LabelType.ChatBubble:
+        //            y = GetLabelLocation(LabelType.Header) - 4;
 
-                    break;
+        //            break;
+        //    }
 
-                case LabelType.Class:
-                    y = GetLabelLocation(LabelType.Name);
-                    break;
-            }
+        //    return y;
+        //}
 
-            return y;
-        }
         public int GetShieldSize()
         {
             int shieldSize = 0;

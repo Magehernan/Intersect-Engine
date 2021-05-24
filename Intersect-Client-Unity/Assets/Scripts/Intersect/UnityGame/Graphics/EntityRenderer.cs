@@ -17,12 +17,12 @@ namespace Intersect.Client.UnityGame.Graphics
         private SpriteRenderer spriteRendererPrefab;
         [SerializeField]
         private Transform spriteRendererContainer;
+        [SerializeField]
+        private RectTransform canvasTransform;
         [Header("Name"), SerializeField]
         private TextMeshProUGUI textName;
         [SerializeField]
         private GameObject gameObjectName;
-        [SerializeField]
-        private Transform tranformName;
         [Header("Bars"), SerializeField]
         private FillBar hpBar;
         [SerializeField]
@@ -58,6 +58,13 @@ namespace Intersect.Client.UnityGame.Graphics
         public void SetPosition(float x, float y)
         {
             myTranform.position = new Vector2(x + .5f, -y);
+        }
+
+        public void SetHeight(int spriteHeight)
+        {
+            Vector2 sizeDelta = canvasTransform.sizeDelta;
+            sizeDelta.y = spriteHeight;
+            canvasTransform.sizeDelta = sizeDelta;
         }
 
         public void Draw(int z, Sprite sprite, byte alpha)
@@ -112,6 +119,11 @@ namespace Intersect.Client.UnityGame.Graphics
                     spriteRenderer.enabled = false;
                 }
             }
+
+            HideHp();
+            HideName();
+            HideCastBar();
+            HideTarget();
         }
 
         private SpriteRenderer GetSpriteRenderer(int index)
@@ -133,11 +145,6 @@ namespace Intersect.Client.UnityGame.Graphics
             textName.color = color.ToColor32();
         }
 
-        public void SetNamePosition(float x, float y)
-        {
-            tranformName.localPosition = new Vector2(x, y);
-        }
-
         public void HideName()
         {
             gameObjectName.SetActive(false);
@@ -150,6 +157,7 @@ namespace Intersect.Client.UnityGame.Graphics
             hpBar.ChangeValue(value);
             gameObjectHPBar.SetActive(true);
         }
+
         public void HideHp()
         {
             gameObjectHPBar.SetActive(false);
@@ -175,7 +183,7 @@ namespace Intersect.Client.UnityGame.Graphics
             targetSpriteRenderer.sprite = sprite;
             if (height != sprite.rect.height)
             {
-                tranformTarget.localPosition = new Vector2(0, (height - sprite.rect.height) / sprite.pixelsPerUnit / 2f);
+                tranformTarget.localPosition = new Vector2(0, (height - sprite.rect.height) / sprite.pixelsPerUnit * .5f);
             }
             else
             {
@@ -188,7 +196,6 @@ namespace Intersect.Client.UnityGame.Graphics
         {
             gameObjectTarget.SetActive(false);
         }
-
         #endregion
     }
 }

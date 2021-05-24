@@ -269,38 +269,6 @@ namespace Intersect.Client.Core
 
             DrawSunLight();
 
-            for (int y = 0; y < Options.MapHeight * 5; y++)
-            {
-                for (int x = 0; x < 3; x++)
-                {
-                    foreach (Entity entity in RenderingEntities[x, y])
-                    {
-                        entity.DrawName(null);
-                        if (entity.GetType() != typeof(Event))
-                        {
-                            entity.DrawHpBar();
-                            entity.DrawCastingBar();
-                        }
-                    }
-                }
-            }
-
-            for (int y = 0; y < Options.MapHeight * 5; y++)
-            {
-                for (int x = 3; x < 6; x++)
-                {
-                    foreach (Entity entity in RenderingEntities[x, y])
-                    {
-                        entity.DrawName(null);
-                        if (entity.GetType() != typeof(Event))
-                        {
-                            entity.DrawHpBar();
-                            entity.DrawCastingBar();
-                        }
-                    }
-                }
-            }
-
             //Draw action msg's
             for (int x = gridX - 1; x <= gridX + 1; x++)
             {

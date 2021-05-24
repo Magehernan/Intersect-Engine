@@ -12,8 +12,6 @@ namespace Intersect.Client.UnityGame.Graphics
         [SerializeField]
         private GameObject gameObjectGuildLabel;
         [SerializeField]
-        private Transform tranformGuildLabel;
-        [SerializeField]
         private LightRenderer lightRendererPrefab;
 
         private LightRenderer lightRenderer;
@@ -28,11 +26,6 @@ namespace Intersect.Client.UnityGame.Graphics
         internal void HideGuild()
         {
             gameObjectGuildLabel.SetActive(false);
-        }
-
-        internal void SetGuildLabelPosition(int x, float y)
-        {
-            tranformGuildLabel.localPosition = new Vector2(x, y);
         }
 
         internal void UpdateLight(float size, float intensity, float expand, UnityEngine.Color color)

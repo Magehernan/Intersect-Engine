@@ -1930,7 +1930,6 @@ namespace Intersect.Client.Entities
             }
 
             playerRenderer.DrawGuildName(Guild, textColor);
-            playerRenderer.SetGuildLabelPosition(0, GetLabelLocation(LabelType.Guild));
         }
 
         public void DrawTargets()

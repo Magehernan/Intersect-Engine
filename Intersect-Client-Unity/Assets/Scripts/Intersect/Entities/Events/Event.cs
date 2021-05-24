@@ -84,6 +84,19 @@ namespace Intersect.Client.Entities.Events
 
         public override void Draw()
         {
+            if (HideEntity)
+            {
+                if (entityRender != null)
+                {
+                    entityRender.HideAll();
+                }
+
+
+                return; //Don't draw if the entity is hidden
+            }
+
+            DrawName(null);
+
             WorldRect.Reset();
             if (MapInstance.Get(CurrentMap) == null || !Globals.GridMaps.Contains(CurrentMap))
             {
@@ -142,6 +155,7 @@ namespace Intersect.Client.Entities.Events
                             }
                         }
                         entityRender.Draw(0, entityTex.GetSprite(spriteX, spriteY), 255);
+                        entityRender.SetHeight(entityTex.SpriteHeight);
                     }
                     break;
                 case EventGraphicType.Tileset: //Tile
@@ -151,6 +165,12 @@ namespace Intersect.Client.Entities.Events
                         mCachedTileset = Globals.ContentManager.GetTexture(
                             GameContentManager.TextureType.Tileset, Graphic.Filename
                         );
+                    }
+
+                    if (mCachedTileset != null)
+                    {
+                        entityRender.Draw(0, mCachedTileset.GetSprite(Graphic.X, Graphic.Y), 255);
+                        entityRender.SetHeight(mCachedTileset.SpriteHeight);
                     }
                     break;
             }
@@ -259,7 +279,7 @@ namespace Intersect.Client.Entities.Events
             return renderList;
         }
 
-        public override void DrawName(Color textColor, Color borderColor, Color backgroundColor)
+        public override void DrawName(Color textColor, Color borderColor = null, Color backgroundColor = null)
         {
             if (HideName || string.IsNullOrWhiteSpace(Name))
             {
@@ -273,17 +293,7 @@ namespace Intersect.Client.Entities.Events
                 return;
             }
 
-            float y = 140;
-            if (Texture != null)
-            {
-                y = Texture.SpriteHeight / Options.TileHeight * 100f + 75f;
-            }
-            if (Graphic.Type == EventGraphicType.Tileset)
-            {
-                y -= 12f;
-            }
             entityRender.DrawName(Name, CustomColors.Names.Events.Name);
-            entityRender.SetNamePosition(0, y);
         }
 
         protected override void CalculateWorldPos()
