@@ -158,11 +158,11 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2647872711630519791}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1941800862290426690}
+  m_Father: {fileID: 187240967129957964}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8063504976680000411
@@ -591,6 +591,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalFit: 0
   m_VerticalFit: 2
+--- !u!1 &6898540129053365013
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 187240967129957964}
+  m_Layer: 0
+  m_Name: Sprites Container
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &187240967129957964
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6898540129053365013}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 8389017736425259462}
+  m_Father: {fileID: 1941800862290426690}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6992753382795093610
 GameObject:
   m_ObjectHideFlags: 0
@@ -754,7 +785,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 8389017736425259462}
+  - {fileID: 187240967129957964}
   - {fileID: 416166258242545999}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -774,7 +805,7 @@ MonoBehaviour:
   myTranform: {fileID: 1941800862290426690}
   spriteRendererPrefab: {fileID: 4013887727418472046, guid: 908fef3cb2eda754cac0a905208a90f9,
     type: 3}
-  spriteRendererContainer: {fileID: 1941800862290426690}
+  spriteRendererContainer: {fileID: 187240967129957964}
   canvasTransform: {fileID: 416166258242545999}
   textName: {fileID: 7445553943121166644}
   gameObjectName: {fileID: 3820622357184266932}
@@ -788,7 +819,6 @@ MonoBehaviour:
   chatBubbleParent: {fileID: 7304159908216654758}
   textGuild: {fileID: 6463397717635440509}
   gameObjectGuildLabel: {fileID: 5792562496764241649}
-  tranformGuildLabel: {fileID: 9085151306619152557}
   lightRendererPrefab: {fileID: 9069683856223868329, guid: 4e921775438ed304db69a19f620015b4,
     type: 3}
 --- !u!210 &4326020138749131960

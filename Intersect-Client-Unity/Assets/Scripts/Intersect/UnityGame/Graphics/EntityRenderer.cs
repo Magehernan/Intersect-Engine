@@ -1,6 +1,5 @@
 ﻿using Intersect.Client.UI.Components;
 using Intersect.Client.Utils;
-using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -46,7 +45,6 @@ namespace Intersect.Client.UnityGame.Graphics
         protected float height = 0f;
 
         private readonly List<SpriteRenderer> spriteRenderers = new List<SpriteRenderer>();
-        private readonly List<Transform> spriteRendererTransforms = new List<Transform>();
 
         protected string entityName = string.Empty;
 
@@ -74,11 +72,9 @@ namespace Intersect.Client.UnityGame.Graphics
             {
                 spriteRenderer = Instantiate(spriteRendererPrefab, spriteRendererContainer, false);
                 spriteRenderers[z] = spriteRenderer;
-                spriteRendererTransforms[z] = spriteRenderer.transform;
-                spriteRendererTransforms[z].SetSiblingIndex(z);
+                spriteRenderer.transform.SetSiblingIndex(z);
             }
 
-            Transform transform = spriteRendererTransforms[z];
 
             spriteRenderer.sprite = sprite;
             spriteRenderer.color = new Color32(255, 255, 255, alpha);
@@ -87,17 +83,8 @@ namespace Intersect.Client.UnityGame.Graphics
             {
                 //seteamos el height que se usa en otros lados
                 height = sprite.rect.height;
-            }
-            else
-            {
-                if (height != sprite.rect.height)
-                {
-                    transform.localPosition = new Vector2(0, (height - sprite.rect.height) / sprite.pixelsPerUnit / 2f);
-                }
-                else
-                {
-                    transform.localPosition = Vector2.zero;
-                }
+                spriteRendererContainer.localPosition = new Vector2(0, height / sprite.pixelsPerUnit * .5f); 
+                return;
             }
         }
 
@@ -131,7 +118,6 @@ namespace Intersect.Client.UnityGame.Graphics
             for (int i = spriteRenderers.Count - 1; i < index; i++)
             {
                 spriteRenderers.Add(null);
-                spriteRendererTransforms.Add(null);
             }
             return spriteRenderers[index];
         }
