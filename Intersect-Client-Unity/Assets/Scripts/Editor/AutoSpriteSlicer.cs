@@ -15,7 +15,7 @@ public static class AutoSpriteSlicer
 
         foreach (Texture2D texture in textures)
         {
-            ProcessTexture(texture, new Vector2(texture.width / 4, texture.height / 4), new Vector2(.5f, 0f), SpriteAlignment.BottomCenter);
+            ProcessTexture(texture, new Vector2(texture.width / 4, texture.height / 4), new Vector2(.5f, 0f), SpriteAlignment.Center);
         }
     }
 
