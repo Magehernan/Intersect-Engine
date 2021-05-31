@@ -82,11 +82,8 @@ namespace Intersect.Client.Interface.Menu
             List<string> paperdollOrder = Options.PaperdollOrder[1];
             for (int z = 0; z < paperdollOrder.Count; z++)
             {
-                string paperdoll = string.Empty;
+                string paperdoll;
                 GameContentManager.TextureType type = GameContentManager.TextureType.Paperdoll;
-                //nos fijamos si hay que dibujar o no el paperdoll
-                int index = Options.EquipmentSlots.IndexOf(paperdollOrder[z]);
-
                 if (paperdollOrder[z] == PLAYER)
                 {
                     type = GameContentManager.TextureType.Entity;
