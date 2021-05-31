@@ -303,8 +303,6 @@ namespace Intersect.Client.Entities
 
             CurrentMap = packet.MapId;
             Name = packet.Name;
-            Log.Info($"Load Entity {Name}");
-
             if (entityRender == null)
             {
                 switch (packet)
@@ -772,18 +770,7 @@ namespace Intersect.Client.Entities
                     animInstance.Show();
                 }
 
-                float y = worldPos.Y;
-                if (Texture != null)
-                {
-
-                    y -= Texture.SpriteHeight / 2f / Options.TileHeight;
-                }
-                else
-                {
-                    y -= .5f;
-                }
-
-                animInstance.SetPosition(worldPos.X + .5f, y, X, Y, CurrentMap, animInstance.AutoRotate ? Dir : -1, Z);
+                animInstance.SetPosition(worldPos.X, worldPos.Y, X, Y, CurrentMap, animInstance.AutoRotate ? Dir : -1, Z);
             }
 
             if (animsToRemove != null)

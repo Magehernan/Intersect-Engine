@@ -382,8 +382,8 @@ namespace Intersect.Client.Entities.Projectiles
                             MapInstance mapInstance = MapInstance.Get(Spawns[s].SpawnMapId);
                             Spawns[s]
                                 .Anim.SetPosition(
-                                    mapInstance.GetX() + Spawns[s].SpawnX + Spawns[s].OffsetX + .5f,
-                                    mapInstance.GetY() + Spawns[s].SpawnY + Spawns[s].OffsetY - .5f,
+                                    mapInstance.GetX() + Spawns[s].SpawnX + Spawns[s].OffsetX,
+                                    mapInstance.GetY() + Spawns[s].SpawnY + Spawns[s].OffsetY,
                                     X, Y, base.CurrentMap, Spawns[s].AutoRotate ? Spawns[s].Dir : 0,
                                     Spawns[s].Z
                                 );

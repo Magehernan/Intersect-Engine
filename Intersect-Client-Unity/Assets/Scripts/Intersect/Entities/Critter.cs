@@ -1,14 +1,12 @@
 ﻿using Intersect.Client.Core;
 using Intersect.Client.General;
 using Intersect.Client.Maps;
+using Intersect.Client.UnityGame;
 using Intersect.GameObjects;
 using Intersect.GameObjects.Maps;
 using Intersect.Utilities;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Intersect.Client.Entities
 {
@@ -47,6 +45,9 @@ namespace Intersect.Client.Entities
 
             //Block Players?
             Passable = !att.BlockPlayers;
+
+            entityRender = UnityFactory.GetEntityRenderer(Enums.EntityTypes.GlobalEntity, Name);
+
         }
 
         public override bool Update()
@@ -90,7 +91,7 @@ namespace Intersect.Client.Entities
                             tmpY--;
                             IsMoving = true;
                             Dir = 0;
-                            OffsetY = Options.TileHeight;
+                            OffsetY = 1;
                             OffsetX = 0;
                         }
 
@@ -101,7 +102,7 @@ namespace Intersect.Client.Entities
                             tmpY++;
                             IsMoving = true;
                             Dir = 1;
-                            OffsetY = -Options.TileHeight;
+                            OffsetY = -1;
                             OffsetX = 0;
                         }
 
@@ -113,19 +114,19 @@ namespace Intersect.Client.Entities
                             IsMoving = true;
                             Dir = 2;
                             OffsetY = 0;
-                            OffsetX = Options.TileWidth;
+                            OffsetX = 1;
                         }
 
                         break;
                     case 3: // Right
-                        if (IsTileBlocked(X + 1, Y, Z, CurrentMap, ref blockedBy, true, true, mAttribute.IgnoreNpcAvoids) == -1 && X < Options.MapWidth - 1 && (!mAttribute.BlockPlayers || !PlayerOnTile(CurrentMap, X+1, Y)))
+                        if (IsTileBlocked(X + 1, Y, Z, CurrentMap, ref blockedBy, true, true, mAttribute.IgnoreNpcAvoids) == -1 && X < Options.MapWidth - 1 && (!mAttribute.BlockPlayers || !PlayerOnTile(CurrentMap, X + 1, Y)))
                         {
                             //If BlockPlayers then make sure there is no player here
                             tmpX++;
                             IsMoving = true;
                             Dir = 3;
                             OffsetY = 0;
-                            OffsetX = -Options.TileWidth;
+                            OffsetX = -1;
                         }
 
                         break;

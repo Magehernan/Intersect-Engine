@@ -17,13 +17,7 @@ namespace Intersect.Client.Utils
         [SerializeField]
         private bool forceHideOnDrag = false;
 
-        private Camera mainCamera;
         private Action onHide;
-
-        private void Awake()
-        {
-            mainCamera = Camera.main;
-        }
 
         public void Init(Action[] onHideActions = default, RectTransform[] rectTransformsToCheck = default, GameObject[] gameObjectsToHide = default, GameObject[] gameObjectsToShow = default)
         {

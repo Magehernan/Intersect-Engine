@@ -17,11 +17,9 @@ namespace Intersect.Client.UnityGame.Graphics
         [SerializeField]
         protected Transform upperTranform = default;
 
-
         public void SetPosition(float x, float y)
         {
-            myTranform.position = new Vector2(x, -y);
-
+            myTranform.position = new Vector2(x + .5f, -y + .5f);
         }
 
         public void DrawLower(Sprite sprite, float zRotation, bool alternateRenderLayer)

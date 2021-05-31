@@ -517,8 +517,8 @@ namespace Intersect.Client.Maps
                         {
                             Animation animInstance = new Animation(anim, true);
                             animInstance.SetPosition(
-                                GetX() + x * Options.TileWidth + Options.TileWidth / 2,
-                                GetY() + y * Options.TileHeight + Options.TileHeight / 2, x, y, Id, 0
+                                GetX() + x,
+                                GetY() + y, x, y, Id, 0
                             );
 
                             mAttributeAnimInstances.Add(att, animInstance);
@@ -612,7 +612,7 @@ namespace Intersect.Client.Maps
 
             MapAnimation anim = new MapAnimation(animBase, tileX, tileY, dir, owner);
             LocalAnimations.TryAdd(anim.Id, anim);
-            anim.SetPosition(GetX() + tileX + .5f, GetY() + tileY - .5f, tileX, tileY, Id, dir);
+            anim.SetPosition(GetX() + tileX, GetY() + tileY, tileX, tileY, Id, dir);
         }
 
         private void HideActiveAnimations()

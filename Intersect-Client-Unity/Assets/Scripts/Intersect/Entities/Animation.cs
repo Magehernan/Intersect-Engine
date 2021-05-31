@@ -194,9 +194,9 @@ namespace Intersect.Client.Entities
 
                 upperLightRenderer.SetPosition(mRenderX - offset.X, mRenderY - offset.Y);
                 upperLightRenderer.UpdateLight(upperLight.Size, 255, upperLight.Expand, upperLight.Color.ToColor32());
-
             }
 
+            animationRenderer.SetPosition(mRenderX, mRenderY);
         }
 
         public void EndDraw()
@@ -304,8 +304,6 @@ namespace Intersect.Client.Entities
             }
 
             mZDimension = z;
-
-            animationRenderer.SetPosition(mRenderX, mRenderY);
         }
 
         public void Update()
