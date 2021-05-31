@@ -1,9 +1,7 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Intersect.Client.UnityGame.Graphics
 {
-
     public class AnimationRenderer : MonoBehaviour
     {
         [SerializeField]
@@ -40,25 +38,5 @@ namespace Intersect.Client.UnityGame.Graphics
         {
             Destroy(gameObject);
         }
-
-        //protected byte GetDirectionSprite(byte dir) {
-        //	switch (dir) {
-        //		case 1:
-        //			return 0;
-        //		case 2:
-        //		case 4: // UpLeft
-        //		case 6: // DownLeft
-        //			return 1;
-        //		case 3: // Right
-        //		case 5: // UpRight
-        //		case 7: // DownRight
-        //			return 2;
-        //		case 0:
-        //			return 3;
-        //		default:
-        //			return 0;
-        //	}
-        //}
-
     }
 }

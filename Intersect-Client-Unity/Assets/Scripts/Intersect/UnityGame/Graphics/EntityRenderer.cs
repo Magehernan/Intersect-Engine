@@ -33,8 +33,6 @@ namespace Intersect.Client.UnityGame.Graphics
         [Header("Target"), SerializeField]
         private SpriteRenderer targetSpriteRenderer;
         [SerializeField]
-        private Transform tranformTarget;
-        [SerializeField]
         private GameObject gameObjectTarget;
 
         [Header("Chat"), SerializeField]
@@ -167,14 +165,6 @@ namespace Intersect.Client.UnityGame.Graphics
         public void DrawTarget(Sprite sprite)
         {
             targetSpriteRenderer.sprite = sprite;
-            if (height != sprite.rect.height)
-            {
-                tranformTarget.localPosition = new Vector2(0, (height - sprite.rect.height) / sprite.pixelsPerUnit * .5f);
-            }
-            else
-            {
-                tranformTarget.localPosition = Vector2.zero;
-            }
             gameObjectTarget.SetActive(true);
         }
 
