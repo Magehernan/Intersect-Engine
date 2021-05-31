@@ -1,8 +1,6 @@
-﻿using Intersect.Client.Framework.File_Management;
-using Intersect.Client.Framework.Graphics;
-using Intersect.Client.General;
-using Intersect.Client.Interface.Game;
+﻿using Intersect.Client.General;
 using Intersect.Client.Interface.Game.Chat;
+using Intersect.Client.Interface.Game.Displayers;
 using Intersect.Client.Interface.Shared;
 using Intersect.Client.Localization;
 using Intersect.Client.Networking;
@@ -25,11 +23,7 @@ namespace Intersect.Client.Interface.Menu
         [SerializeField]
         private TextMeshProUGUI textDescription;
         [SerializeField]
-        private Image imageCharacterBody;
-        [SerializeField]
-        private Image imageCharacterHair;
-        [SerializeField]
-        private Image imageCharacterGuild;
+        private CharacterDisplayer characterDisplayer;
         [SerializeField]
         private Button buttonLeft;
         [SerializeField]
@@ -77,80 +71,40 @@ namespace Intersect.Client.Interface.Menu
 
         private class CharacterSlot
         {
-            private Guid id;
-            private string name;
-            private string description = string.Empty;
-            private Sprite spriteBody;
-            private Sprite spriteFace;
-            private Sprite spriteGuild;
+            private Character character;
+
             public CharacterSlot(Character character)
             {
-                if (character is null)
-                {
-                    name = Strings.CharacterSelection.empty;
-                }
-                else
-                {
-                    id = character.Id;
-                    name = Strings.CharacterSelection.name.ToString(character.Name);
-                    description = Strings.CharacterSelection.info.ToString(character.Level, character.Class);
-
-
-                    GameTexture textureBody = Globals.ContentManager.GetTexture(GameContentManager.TextureType.Entity, character.Sprite);
-                    if (textureBody != null)
-                    {
-                        spriteBody = textureBody.GetSprite(0, 0);
-                    }
-
-                    if (character.Equipment.Length >= 8)
-                    {
-                        GameTexture texturePaperdoll = Globals.ContentManager.GetTexture(GameContentManager.TextureType.Paperdoll, character.Equipment[7]);
-                        if (texturePaperdoll != null)
-                        {
-                            spriteGuild = texturePaperdoll.GetSprite(0, 0);
-                        }
-                    }
-                }
+                this.character = character;
             }
 
             public void Show(
                 TextMeshProUGUI textCharacter,
                 TextMeshProUGUI textDescription,
-                Image imageCharacterBody,
-                Image imageCharacterFace,
-                Image imageCharacterGuild,
+                CharacterDisplayer characterDisplayer,
                 Button buttonUse,
                 Button buttonNew,
                 Button buttonDelete)
             {
-
-                textCharacter.text = name;
-                if (Guid.Empty.Equals(id))
+                if (character is null || Guid.Empty.Equals(character.Id))
                 {
+                    textCharacter.text = Strings.CharacterSelection.empty;
                     textDescription.gameObject.SetActive(false);
                     buttonUse.gameObject.SetActive(false);
                     buttonDelete.gameObject.SetActive(false);
-                    imageCharacterBody.gameObject.SetActive(false);
-                    imageCharacterFace.gameObject.SetActive(false);
-                    imageCharacterGuild.gameObject.SetActive(false);
+                    characterDisplayer.gameObject.SetActive(false);
                     buttonNew.gameObject.SetActive(true);
+                    return;
                 }
-                else
-                {
-                    textDescription.text = description;
-                    imageCharacterBody.sprite = spriteBody;
-                    imageCharacterFace.sprite = spriteFace;
-                    imageCharacterGuild.sprite = spriteGuild;
 
-                    textDescription.gameObject.SetActive(true);
-                    buttonUse.gameObject.SetActive(true);
-                    //buttonUse.interactable = true;
-                    buttonDelete.gameObject.SetActive(true);
-                    imageCharacterBody.gameObject.SetActive(spriteBody != null);
-                    imageCharacterFace.gameObject.SetActive(spriteFace != null);
-                    imageCharacterGuild.gameObject.SetActive(spriteGuild != null);
-                    buttonNew.gameObject.SetActive(false);
-                }
+                textCharacter.text = Strings.CharacterSelection.name.ToString(character.Name);
+                textDescription.text = Strings.CharacterSelection.info.ToString(character.Level, character.Class);
+                textDescription.gameObject.SetActive(true);
+                buttonUse.gameObject.SetActive(true);
+                buttonDelete.gameObject.SetActive(true);
+                buttonNew.gameObject.SetActive(false);
+                characterDisplayer.gameObject.SetActive(true);
+                characterDisplayer.Set(character);
             }
         }
 
@@ -243,7 +197,7 @@ namespace Intersect.Client.Interface.Menu
                 buttonRight.gameObject.SetActive(false);
             }
 
-            slots[mSelectedChar].Show(textCharacter, textDescription, imageCharacterBody, imageCharacterHair, imageCharacterGuild, buttonUse, buttonNew, buttonDelete);
+            slots[mSelectedChar].Show(textCharacter, textDescription, characterDisplayer, buttonUse, buttonNew, buttonDelete);
         }
 
         private void ClickUse()
@@ -252,7 +206,7 @@ namespace Intersect.Client.Interface.Menu
             {
                 return;
             }
-            
+
             ChatboxMsg.ClearMessages();
             PacketSender.SendSelectCharacter(characters[mSelectedChar].Id);
 
@@ -269,7 +223,7 @@ namespace Intersect.Client.Interface.Menu
             {
                 return;
             }
-            
+
             Interface.InputBox.Show(
                     Strings.CharacterSelection.deletetitle.ToString(characters[mSelectedChar].Name),
                     Strings.CharacterSelection.deleteprompt.ToString(characters[mSelectedChar].Name),
@@ -283,7 +237,7 @@ namespace Intersect.Client.Interface.Menu
         private void DeleteCharacter(object sender, EventArgs e)
         {
             PacketSender.SendDeleteCharacter((Guid)((InputBox)sender).UserData);
-            
+
             Globals.WaitingOnServer = true;
             buttonUse.interactable = false;
             buttonNew.interactable = false;
@@ -300,7 +254,7 @@ namespace Intersect.Client.Interface.Menu
             {
                 return;
             }
-            
+
             PacketSender.SendNewCharacter();
 
             Globals.WaitingOnServer = true;
