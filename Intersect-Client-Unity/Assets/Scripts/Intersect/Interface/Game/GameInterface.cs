@@ -92,6 +92,7 @@ namespace Intersect.Client.Interface.Game
         private void Start()
         {
             hotbar.Setup();
+            playerBox.IsPlayerBox = true;
         }
 
         internal void Draw()

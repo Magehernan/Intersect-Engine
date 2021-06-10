@@ -72,6 +72,7 @@ namespace Intersect.Client.Interface.Game.EntityPanel
         private Transform descTransform;
 
 
+        public bool IsPlayerBox { get; set; } = false;
         private EntityTypes entityType;
         private bool mInitialized;
         private readonly Dictionary<Guid, SpellStatus> mActiveStatuses = new Dictionary<Guid, SpellStatus>();
@@ -131,11 +132,6 @@ namespace Intersect.Client.Interface.Game.EntityPanel
             {
                 SetupEntityElements();
                 UpdateSpellStatus();
-                //if (entityType == EntityTypes.Event)
-                //{
-                //    EventDesc.AddText(((Event)MyEntity).Desc, Color.White);
-                //}
-
                 mInitialized = true;
             }
 
@@ -158,15 +154,12 @@ namespace Intersect.Client.Interface.Game.EntityPanel
                 }
             }
 
-            //If player draw exp bar
             if (MyEntity == Globals.Me)
             {
                 UpdateXpBar();
             }
-            else
-            {
-                UpdateGuildButton();
-            }
+
+            UpdateGuildButton();
 
             if (UpdateStatuses)
             {
@@ -196,7 +189,7 @@ namespace Intersect.Client.Interface.Game.EntityPanel
             buttonParty.gameObject.SetActive(isOtherPlayer);
             buttonFriend.gameObject.SetActive(isOtherPlayer);
 
-            bool isMe = Globals.Me == MyEntity;
+            bool isMe = Globals.Me == MyEntity && IsPlayerBox;
             fillXP.gameObject.SetActive(isMe);
             labelXP.enabled = isMe;
             textXP.enabled = isMe;
@@ -322,6 +315,11 @@ namespace Intersect.Client.Interface.Game.EntityPanel
 
         private void UpdateXpBar()
         {
+            if (!IsPlayerBox)
+            {
+                return;
+            }
+
             if (((Player)MyEntity).GetNextLevelExperience() > 0)
             {
                 float targetExpFill = (float)((Player)MyEntity).Experience / ((Player)MyEntity).GetNextLevelExperience();
