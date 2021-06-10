@@ -293,8 +293,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3156535934321563575}
   m_HandleRect: {fileID: 6151895360207964395}
   m_Direction: 2
-  m_Value: 0
-  m_Size: 1
+  m_Value: 1
+  m_Size: 0.18108505
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -574,7 +574,196 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: '<size=16>Intersect Engine
+
+    <size=10>www.freemmorpgmaker.com
+
+    <size=8>Created
+    by JC Snider and Joe Bridges
+
+    Copyright 2019 (C) Ascension Game Dev
+
+    <size=10>
+
+    <size=12>Developers
+
+    <size=8>
+
+    <size=10>JC
+    Snider
+
+    <size=10>Joe Bridges
+
+    <size=10>Robert Lodico
+
+    <size=10>
+
+    <size=12>Graphics
+
+    <size=8>
+
+    <size=10>7Soul
+
+    <size=10>Item
+    & Skill Icons
+
+    <size=8>
+
+    <size=10>Cordell Carrier (aka Murdoc)
+
+    <size=10>Tilesets
+    and Sprite Modifications
+
+    <size=8>
+
+    <size=10>George Bailey (aka George)
+
+    <size=10>Graphic
+    Style, Original Tilesets, and Items
+
+    <size=8>
+
+    <size=10>Joe Williamson
+    (aka @JoeCreates)
+
+    <size=10>Item Icons
+
+    <size=8>
+
+    <size=10>Jon
+    Collier (aka Zetasis)
+
+    <size=10>Tiles, Characters, Resources, Generator
+    Components, Paperdolls, UI Icons, and so much more!
+
+    <size=8>
+
+    <size=10>PixelFox
+
+    <size=10>Animations,
+    Characters, Monsters, Paperdolls, and Tiles
+
+    <size=8>
+
+    <size=12>User
+    Interface
+
+    <size=8>
+
+    <size=10>Aesthetic
+
+    <size=10>Original UI
+    Design
+
+    <size=8>
+
+    <size=10>FontAwesome
+
+    <size=10>UI Icons
+
+    <size=8>
+
+    <size=10>Vincent
+    Garreau (particles.js)
+
+    <size=10>Button Textures
+
+    <size=8>
+
+    <size=12>Sound
+    Effects
+
+    <size=8>
+
+    <size=10>artisticdude
+
+    <size=10>Various RPG
+    Sound Effects
+
+    <size=8>
+
+    <size=10>Kenney
+
+    <size=10>RPG and UI
+    Sound Effects
+
+    <size=8>
+
+    <size=10>Octave Sounds
+
+    <size=10>UI Sound
+    Effects
+
+    <size=8>
+
+    <size=12>Music
+
+    <size=8>
+
+    <size=10>Eric
+    Matyas
+
+    <size=10>SoundImage.org
+
+    <size=8>
+
+    <size=12>Fonts
+
+    <size=8>
+
+    <size=10>Adobe
+
+    <size=10>Source
+    Sans Pro and Source Sans Pro Black
+
+    <size=8>
+
+    <size=12>Special Thanks
+
+    <size=8>
+
+    <size=10>Nightmare
+
+    <size=10>Acting
+    as an incredible testing environment, and helping us conquer engine limitations!
+
+    <size=8>
+
+    <size=10>Internal
+    Testing Team(s)
+
+    <size=10>Khaikaa, Zetasis, Niko, Raku, Mcadams, BiGG, Ainz
+    Ooal Gown, davidsaid06, dxxknight, and hiroman!
+
+    <size=8>
+
+    <size=10>Zetasis
+
+    <size=10>The
+    amount of miscellaneous graphics he created for us on a whim, free of charge,
+    and throughout all hours of the night is insane. Thanks Zeta!
+
+    <size=8>
+
+    <size=10>Robin
+    Perris
+
+    <size=10>DarkUI library and various development consultations.
+
+    <size=8>
+
+    <size=10>MonoGame
+    Framework
+
+    <size=10>Engine rendering, input handling, audio playback systems,
+    and more!
+
+    <size=8>
+
+    <size=10>Ascension Game Dev Community
+
+    <size=10>Moral
+    support, financial support, alpha/beta testing, and so much more!'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3862f01959845e648bb23507edeb3540, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: f97b1b7e2e1f0ea4fab4e36a16557714, type: 2}
