@@ -1,9 +1,6 @@
-﻿using Intersect.Client.Entities;
-using Intersect.Client.Framework.File_Management;
+﻿using Intersect.Client.Framework.File_Management;
 using Intersect.Client.Framework.Graphics;
 using Intersect.Client.General;
-using Intersect.GameObjects;
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -89,7 +86,7 @@ namespace Intersect.Client.Interface.Menu
                     type = GameContentManager.TextureType.Entity;
                     paperdoll = character.Sprite;
                 }
-                else 
+                else
                 {
                     paperdoll = equipment[z];
                 }

@@ -23,7 +23,7 @@ namespace Intersect.Client.Interface.Menu
         [SerializeField]
         private TextMeshProUGUI textDescription;
         [SerializeField]
-        private Image imageCharacterBody;
+        private CharacterDisplayer characterDisplayer;
         [SerializeField]
         private Button buttonLeftSprite;
         [SerializeField]
@@ -58,6 +58,8 @@ namespace Intersect.Client.Interface.Menu
         private readonly List<KeyValuePair<int, ClassSprite>> mMaleSprites = new List<KeyValuePair<int, ClassSprite>>();
         private readonly List<KeyValuePair<int, ClassSprite>> mFemaleSprites = new List<KeyValuePair<int, ClassSprite>>();
         private int mDisplaySpriteIndex = -1;
+
+        private Character character;
 
         private void Start()
         {
@@ -105,6 +107,10 @@ namespace Intersect.Client.Interface.Menu
 
             dropdownClass.value = 0;
             dropdownClass.RefreshShownValue();
+            character ??= new Character();
+            character.Face = null;
+            character.Sprite = null;
+
             LoadClass();
             UpdateDisplay();
         }
@@ -144,17 +150,10 @@ namespace Intersect.Client.Interface.Menu
                         classSprite = mFemaleSprites[mDisplaySpriteIndex].Value;
                     }
 
-                    imageCharacterBody.sprite = Globals.ContentManager.GetTexture(GameContentManager.TextureType.Face, classSprite.Face)?.GetSpriteDefault();
-
-                    if (imageCharacterBody.sprite == null)
-                    {
-                        imageCharacterBody.sprite = Globals.ContentManager.GetTexture(GameContentManager.TextureType.Entity, classSprite.Sprite)?.GetSpriteDefault();
-                    }
+                    character.Face = classSprite.Face;
+                    character.Sprite = classSprite.Sprite;
+                    characterDisplayer.Set(character);
                 }
-            }
-            else
-            {
-                imageCharacterBody.enabled = false;
             }
         }
 
@@ -330,7 +329,7 @@ namespace Intersect.Client.Interface.Menu
             PacketSender.SendCreateCharacter(inputName.text, GetClass().Id, sprite);
 
             Globals.WaitingOnServer = true;
-            buttonCreate.enabled = false;
+            buttonCreate.interactable = false;
             ChatboxMsg.ClearMessages();
         }
     }

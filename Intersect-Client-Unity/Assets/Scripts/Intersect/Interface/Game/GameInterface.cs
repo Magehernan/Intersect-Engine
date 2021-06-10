@@ -89,10 +89,15 @@ namespace Intersect.Client.Interface.Game
         private bool mShouldHideGuildWindow;
         private string mTradingTarget;
 
+        protected override void Awake()
+        {
+            base.Awake();
+            playerBox.IsPlayerBox = true;
+        }
+
         private void Start()
         {
             hotbar.Setup();
-            playerBox.IsPlayerBox = true;
         }
 
         internal void Draw()
