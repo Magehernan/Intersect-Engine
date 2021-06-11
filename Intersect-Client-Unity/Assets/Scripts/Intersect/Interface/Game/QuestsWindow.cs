@@ -167,7 +167,6 @@ namespace Intersect.Client.Interface.Game
             questDetailDisplayer.UpdateQuest(mSelectedQuest, OnBack);
         }
 
-
         private void QuestDisplayerClicked(Guid questId)
         {
             QuestBase quest = QuestBase.Get(questId);

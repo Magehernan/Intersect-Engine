@@ -169,6 +169,8 @@ namespace Intersect.Client.Interface.Game
                     members.Remove(name);
                 }
             }
+
+            buttonLeave.gameObject.SetActive(Globals.Me != null && Globals.Me.Rank > 0);
         }
 
         private void OnClickLeft(object value)
@@ -194,44 +196,58 @@ namespace Intersect.Client.Interface.Game
 
         private void OnClickRight(object value)
         {
-            //Only pm online players
-            if (value is GuildMember member && member.Id != Globals.Me?.Id)
+            if (!(value is GuildMember member) || member.Id == Globals.Me?.Id)
             {
-                mSelectedMember = member;
-
-                GuildRank rank = Globals.Me?.GuildRank ?? null;
-
-                if (rank != null)
-                {
-                    int rankIndex = Globals.Me.Rank;
-                    bool isOwner = rankIndex == 0;
-
-                    mPmOption.SetActive(mSelectedMember?.Online ?? false);
-
-                    //Promote Options
-                    for (int i = 0; i < mPromoteOptions.Length; i++)
-                    {
-                        int currentRank = i + 1;
-                        mPromoteOptions[i].SetActive((isOwner || rank.Permissions.Promote)
-                            && currentRank > rankIndex && currentRank < member.Rank && member.Rank > rankIndex);
-                    }
-
-                    //Demote Options
-                    for (int i = 0; i < mDemoteOptions.Length; i++)
-                    {
-                        int currentRank = i + 2;
-                        mDemoteOptions[i].SetActive((isOwner || rank.Permissions.Demote)
-                            && currentRank > rankIndex && currentRank > member.Rank && member.Rank > rankIndex);
-                    }
-
-                    mKickOption.SetActive((rank.Permissions.Kick || isOwner) && member.Rank > rankIndex);
-
-                    mTransferOption.SetActive(isOwner);
-
-                    contextMenuTransform.position = Input.mousePosition;
-                    contextMenuGameObject.SetActive(true);
-                }
+                return;
             }
+
+            mSelectedMember = member;
+
+            GuildRank rank = Globals.Me?.GuildRank ?? null;
+
+            if (rank == null)
+            {
+                return;
+            }
+
+            int rankIndex = Globals.Me.Rank;
+            bool isOwner = rankIndex == 0;
+
+            bool isOnline = mSelectedMember?.Online ?? false;
+            bool show = isOnline;
+            //Only pm online players
+            mPmOption.SetActive(isOnline);
+
+            //Promote Options
+            for (int i = 0; i < mPromoteOptions.Length; i++)
+            {
+                int currentRank = i + 1;
+                bool canPromote = (isOwner || rank.Permissions.Promote) && currentRank > rankIndex && currentRank < member.Rank && member.Rank > rankIndex;
+                show |= canPromote;
+                mPromoteOptions[i].SetActive(canPromote);
+            }
+
+            //Demote Options
+            for (int i = 0; i < mDemoteOptions.Length; i++)
+            {
+                int currentRank = i + 2;
+                bool canDemote = (isOwner || rank.Permissions.Demote) && currentRank > rankIndex && currentRank > member.Rank && member.Rank > rankIndex;
+                show |= canDemote;
+                mDemoteOptions[i].SetActive(canDemote);
+            }
+            bool canKick = (rank.Permissions.Kick || isOwner) && member.Rank > rankIndex;
+            mKickOption.SetActive(canKick);
+            show |= canKick;
+
+            mTransferOption.SetActive(isOwner);
+            show |= isOwner;
+            if (!show)
+            {
+                return;
+            }
+
+            contextMenuTransform.position = Input.mousePosition;
+            contextMenuGameObject.SetActive(true);
         }
         #endregion
 

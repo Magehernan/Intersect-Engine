@@ -173,6 +173,7 @@ namespace Intersect.Client.Interface.Game.Chat
         public void SetChatboxText(string msg)
         {
             mChatboxInput.text = msg;
+            mChatboxInput.caretPosition = msg.Length;
             Focus();
         }
 

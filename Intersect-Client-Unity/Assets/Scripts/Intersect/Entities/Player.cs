@@ -1,31 +1,26 @@
-﻿using System;
-using System.Linq;
-using System.Collections.Generic;
-
-using Intersect.Client.Core;
+﻿using Intersect.Client.Core;
 using Intersect.Client.Core.Controls;
 using Intersect.Client.Entities.Events;
 using Intersect.Client.Entities.Projectiles;
-using Intersect.Client.Framework.File_Management;
 using Intersect.Client.Framework.GenericClasses;
-using Intersect.Client.Framework.Graphics;
 using Intersect.Client.General;
-using Intersect.Client.Interface.Game;
+using Intersect.Client.Interface.Game.Chat;
 using Intersect.Client.Interface.Game.EntityPanel;
+using Intersect.Client.Interface.Shared;
 using Intersect.Client.Localization;
 using Intersect.Client.Maps;
 using Intersect.Client.Networking;
+using Intersect.Client.UnityGame.Graphics;
+using Intersect.Config.Guilds;
 using Intersect.Enums;
 using Intersect.GameObjects;
 using Intersect.GameObjects.Maps;
 using Intersect.Network.Packets.Server;
-
-using Newtonsoft.Json;
-using Intersect.Client.UnityGame.Graphics;
 using Intersect.Utilities;
-using Intersect.Client.Utils;
-using Intersect.Client.Interface.Shared;
-using Intersect.Config.Guilds;
+using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Intersect.Client.Entities
 {
@@ -54,7 +49,7 @@ namespace Intersect.Client.Entities
         private List<PartyMember> mParty;
 
         public Dictionary<Guid, QuestProgress> QuestProgress = new Dictionary<Guid, QuestProgress>();
-        
+
         public Guid[] HiddenQuests = new Guid[0];
 
         public Dictionary<Guid, long> SpellCooldowns = new Dictionary<Guid, long>();
@@ -217,9 +212,10 @@ namespace Intersect.Client.Entities
             PlayerEntityPacket playerPacket = (PlayerEntityPacket)packet;
             Gender = playerPacket.Gender;
             Class = playerPacket.ClassId;
-            Guild = playerPacket.Guild;
             Type = playerPacket.AccessLevel;
             CombatTimer = playerPacket.CombatTimeRemaining + Globals.System.GetTimeMs();
+            Guild = playerPacket.Guild;
+            Rank = playerPacket.GuildRank;
 
             if (playerPacket.Equipment != null)
             {
@@ -534,6 +530,17 @@ namespace Intersect.Client.Entities
         {
             if (ItemBase.Get(Inventory[index].ItemId) != null)
             {
+                //Permission Check
+                if (Globals.GuildBank)
+                {
+                    GuildRank rank = Globals.Me.GuildRank;
+                    if (string.IsNullOrWhiteSpace(Globals.Me.Guild) || (!rank.Permissions.BankDeposit && Globals.Me.Rank != 0))
+                    {
+                        ChatboxMsg.AddMessage(new ChatboxMsg(Strings.Guilds.NotAllowedDeposit.ToString(Globals.Me.Guild), CustomColors.Alerts.Error, ChatMessageType.Bank));
+                        return;
+                    }
+                }
+
                 if (Inventory[index].Quantity > 1)
                 {
                     Interface.Interface.InputBox.Show(
@@ -562,6 +569,17 @@ namespace Intersect.Client.Entities
         {
             if (ItemBase.Get(Globals.Bank[index].ItemId) != null)
             {
+                //Permission Check
+                if (Globals.GuildBank)
+                {
+                    GuildRank rank = Globals.Me.GuildRank;
+                    if (string.IsNullOrWhiteSpace(Globals.Me.Guild) || (!rank.Permissions.BankRetrieve && Globals.Me.Rank != 0))
+                    {
+                        ChatboxMsg.AddMessage(new ChatboxMsg(Strings.Guilds.NotAllowedWithdraw.ToString(Globals.Me.Guild), CustomColors.Alerts.Error, ChatMessageType.Bank));
+                        return;
+                    }
+                }
+
                 if (Globals.Bank[index].Quantity > 1)
                 {
                     Interface.Interface.InputBox.Show(
@@ -748,7 +766,7 @@ namespace Intersect.Client.Entities
             {
                 SpellBase spellBase = SpellBase.Get(Spells[index].SpellId);
 
-                if (spellBase.CastDuration > 0 && Globals.Me.IsMoving)
+                if (spellBase.CastDuration > 0 && Options.Instance.CombatOpts.MovementCancelsCast && Globals.Me.IsMoving)
                 {
                     return;
                 }
@@ -997,11 +1015,11 @@ namespace Intersect.Client.Entities
             {
                 return;
             }
-
             bool canTargetPlayers = Globals.Me.MapInstance.ZoneType != MapZones.Safe;
 
             // Build a list of Entities to select from with positions if our list is either old, we've moved or changed maps somehow.
-            if (mlastTargetScanTime < Timing.Global.Milliseconds
+            if (
+                mlastTargetScanTime < Timing.Global.Milliseconds
                 || mlastTargetScanMap != Globals.Me.CurrentMap
                 || mlastTargetScanLocation != new Point(X, Y)
                 )
@@ -1243,15 +1261,19 @@ namespace Intersect.Client.Entities
             {
                 case 0:
                     y--;
+
                     break;
                 case 1:
                     y++;
+
                     break;
                 case 2:
                     x--;
+
                     break;
                 case 3:
                     x++;
+
                     break;
             }
 
@@ -1266,7 +1288,8 @@ namespace Intersect.Client.Entities
 
                     if (en.Value != Globals.Me
                         && en.Value.CurrentMap == map
-                        && en.Value.X == x && en.Value.Y == y
+                        && en.Value.X == x
+                        && en.Value.Y == y
                         && en.Value.CanBeAttacked())
                     {
                         //ATTACKKKKK!!!
@@ -1748,6 +1771,7 @@ namespace Intersect.Client.Entities
                                 CurrentMap = Globals.MapGrid[gridX, gridY];
                                 FetchNewMaps();
                             }
+
                         }
                         else
                         {
@@ -1857,7 +1881,7 @@ namespace Intersect.Client.Entities
         public virtual void DrawGuildName(Color textColor, Color borderColor = null, Color backgroundColor = null)
         {
             PlayerEntityRenderer playerRenderer = (PlayerEntityRenderer)entityRender;
-            if (HideName || string.IsNullOrWhiteSpace(Guild))
+            if (HideName || string.IsNullOrWhiteSpace(Guild) || !Options.Instance.Guild.ShowGuildNameTagsOverMembers)
             {
                 playerRenderer.HideGuild();
                 return;
@@ -1870,43 +1894,6 @@ namespace Intersect.Client.Entities
             //if (backgroundColor == null) {
             //	backgroundColor = Color.Transparent;
             //}
-
-            //Check for npc colors
-            if (textColor == null)
-            {
-                LabelColor? color;
-                switch (Type)
-                {
-                    case -1: //When entity has a target (showing aggression)
-                        color = CustomColors.Names.Npcs["Aggressive"];
-
-                        break;
-                    case 0: //Attack when attacked
-                        color = CustomColors.Names.Npcs["AttackWhenAttacked"];
-
-                        break;
-                    case 1: //Attack on sight
-                        color = CustomColors.Names.Npcs["AttackOnSight"];
-
-                        break;
-                    case 3: //Guard
-                        color = CustomColors.Names.Npcs["Guard"];
-
-                        break;
-                    case 2: //Neutral
-                    default:
-                        color = CustomColors.Names.Npcs["Neutral"];
-
-                        break;
-                }
-
-                if (color != null)
-                {
-                    textColor = color?.Name;
-                    //backgroundColor = color?.Background;
-                    //borderColor = color?.Outline;
-                }
-            }
 
             //Check for stealth amoungst status effects.
             for (int n = 0; n < Status.Count; n++)

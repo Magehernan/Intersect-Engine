@@ -1,7 +1,9 @@
 ﻿using Intersect.Client.Framework.File_Management;
 using Intersect.Client.Framework.Graphics;
 using Intersect.Client.General;
+using Intersect.Client.Networking;
 using Intersect.Client.UnityGame;
+using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -98,11 +100,27 @@ namespace Intersect.Client.Interface.Game
             Show();
         }
 
+        public void Draw()
+        {
+            if (Picture != null)
+            {
+                if (Globals.Picture != null && Globals.Picture.HideTime > 0 && Globals.System.GetTimeMs() > Globals.Picture.ReceiveTime + Globals.Picture.HideTime)
+                {
+                    //Should auto close this picture
+                    Hide();
+                }
+            }
+        }
+
         public override void Hide(object obj = null)
         {
-            base.Hide(obj);
-            Globals.Picture = null;
-            Picture = string.Empty;
+            if (Picture != null)
+            {
+                base.Hide(obj);
+                PacketSender.SendClosePicture(Globals.Picture?.EventId ?? Guid.Empty);
+                Globals.Picture = null;
+                Picture = string.Empty;
+            }
         }
 
         public void OnPointerClick(PointerEventData eventData)

@@ -110,14 +110,15 @@ namespace Intersect.Client.Interface.Game
 
             chatbox.Draw();
             eventWindow.Draw();
+            pictureWindow.Draw();
 
             if (Globals.Picture != null)
             {
-                if (pictureWindow.Picture != Globals.Picture ||
-                    pictureWindow.Size != Globals.PictureSize ||
-                    pictureWindow.Clickable != Globals.PictureClickable)
+                if (pictureWindow.Picture != Globals.Picture.Picture ||
+                     pictureWindow.Size != Globals.Picture.Size ||
+                     pictureWindow.Clickable != Globals.Picture.Clickable)
                 {
-                    pictureWindow.Setup(Globals.Picture, Globals.PictureSize, Globals.PictureClickable);
+                    pictureWindow.Setup(Globals.Picture.Picture, Globals.Picture.Size, Globals.Picture.Clickable);
                 }
             }
             else

@@ -770,7 +770,7 @@ namespace Intersect.Client.Maps
             Guid mapId = Id;
 
             // Is this an actual location on this map?
-            if (!Globals.Me.GetRealLocation(ref x, ref y, ref mapId))
+            if (!Globals.Me.GetRealLocation(ref x, ref y, ref mapId) || mapId != Id)
             {
                 return;
             }

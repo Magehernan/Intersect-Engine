@@ -1,8 +1,11 @@
 ﻿using Intersect.Client.Framework.File_Management;
 using Intersect.Client.Framework.Graphics;
 using Intersect.Client.General;
+using Intersect.Client.Interface.Game.Chat;
 using Intersect.Client.Items;
 using Intersect.Client.Localization;
+using Intersect.Config.Guilds;
+using Intersect.Enums;
 using Intersect.GameObjects;
 using System;
 using UnityEngine;
@@ -120,8 +123,24 @@ namespace Intersect.Client.Interface.Game.Bank
             BankItem bankItem = eventData.pointerDrag.GetComponent<BankItem>();
             if (bankItem != null)
             {
-                //Try to swap....
-                Globals.Me.SwapBankItems(bankItem.Index, Index);
+                bool allowed = true;
+
+                //Permission Check
+                if (Globals.GuildBank)
+                {
+                    GuildRank rank = Globals.Me.GuildRank;
+                    if (string.IsNullOrWhiteSpace(Globals.Me.Guild) || (!rank.Permissions.BankDeposit && Globals.Me.Rank != 0))
+                    {
+                        ChatboxMsg.AddMessage(new ChatboxMsg(Strings.Guilds.NotAllowedSwap.ToString(Globals.Me.Guild), CustomColors.Alerts.Error, ChatMessageType.Bank));
+                        allowed = false;
+                    }
+                }
+
+                if (allowed)
+                {
+                    //Try to swap....
+                    Globals.Me.SwapBankItems(bankItem.Index, Index);
+                }
                 return;
             }
         }

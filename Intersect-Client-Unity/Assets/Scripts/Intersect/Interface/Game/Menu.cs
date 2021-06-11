@@ -145,18 +145,18 @@ namespace Intersect.Client.Interface.Game
 
         internal void ToggleGuildWindow()
         {
-            if (string.IsNullOrEmpty(Globals.Me.Guild))
-            {
-                ChatboxMsg.AddMessage(new ChatboxMsg(Strings.Guilds.NotInGuild, CustomColors.Alerts.Error, ChatMessageType.Guild));
-                return;
-            }
-
             if (guildWindow.IsVisible)
             {
                 guildWindow.Hide();
             }
             else
             {
+                if (string.IsNullOrEmpty(Globals.Me.Guild))
+                {
+                    ChatboxMsg.AddMessage(new ChatboxMsg(Strings.Guilds.NotInGuild, CustomColors.Alerts.Error, ChatMessageType.Guild));
+                    return;
+                }
+
                 HideWindows();
                 PacketSender.SendRequestGuild();
                 guildWindow.UpdateList();
