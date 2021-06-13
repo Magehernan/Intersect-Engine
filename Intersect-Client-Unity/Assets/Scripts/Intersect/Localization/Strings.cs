@@ -574,11 +574,11 @@ namespace Intersect.Client.Localization
                 {"openparties", @"Open Parties:"},
                 {"openspells", @"Open Spells:"},
                 {"openfriends", @"Open Friends:"},
+                {"openguild", @"Open Guild:"},
                 {"opensettings", @"Open Settings:"},
                 {"opendebugger", @"Open Debugger:"},
                 {"openadminpanel", @"Open Admin Panel:"},
                 {"togglegui", @"Toggle Interface:"},
-                {"openguild", @"Open Guild:"},
             };
 
             public static LocalizedString edit = @"Edit Controls";
@@ -881,6 +881,8 @@ namespace Intersect.Client.Localization
             public static LocalizedString NotAllowedDeposit = @"You do not have permission to deposit items into {00}'s guild bank!";
 
             public static LocalizedString NotAllowedSwap = @"You do not have permission to swap items around within {00}'s guild bank!";
+
+            public static LocalizedString InviteAlreadyInGuild = @"The player you're trying to invite is already in a guild or has a pending invite.";
         }
 
         public struct InputBox

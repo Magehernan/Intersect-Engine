@@ -335,13 +335,15 @@ namespace Intersect.Client.Interface.Game.EntityPanel
 
         private void UpdateGuildButton()
         {
+            bool show = false;
             if (MyEntity is Player plyr && MyEntity != Globals.Me && string.IsNullOrWhiteSpace(plyr.Guild))
             {
                 if (Globals.Me?.GuildRank?.Permissions?.Invite ?? false)
                 {
-                    buttonGuild.gameObject.SetActive(true);
+                    show = true;
                 }
             }
+            buttonGuild.gameObject.SetActive(show);
         }
 
         private void OnClickTrade()
@@ -370,18 +372,25 @@ namespace Intersect.Client.Interface.Game.EntityPanel
 
         private void OnClickGuild()
         {
-            if (MyEntity is Player plyr && MyEntity != Globals.Me && string.IsNullOrWhiteSpace(plyr.Guild))
+            if (MyEntity is Player plyr && MyEntity != Globals.Me)
             {
-                if (Globals.Me?.GuildRank?.Permissions?.Invite ?? false)
+                if (string.IsNullOrWhiteSpace(plyr.Guild))
                 {
-                    if (Globals.Me.CombatTimer < Globals.System.GetTimeMs())
+                    if (Globals.Me?.GuildRank?.Permissions?.Invite ?? false)
                     {
-                        PacketSender.SendInviteGuild(MyEntity.Name);
+                        if (Globals.Me.CombatTimer < Globals.System.GetTimeMs())
+                        {
+                            PacketSender.SendInviteGuild(MyEntity.Name);
+                        }
+                        else
+                        {
+                            PacketSender.SendChatMsg(Strings.Friends.infight.ToString(), 4);
+                        }
                     }
-                    else
-                    {
-                        PacketSender.SendChatMsg(Strings.Friends.infight.ToString(), 4);
-                    }
+                }
+                else
+                {
+                    Chat.ChatboxMsg.AddMessage(new Chat.ChatboxMsg(Strings.Guilds.InviteAlreadyInGuild, Color.Red, ChatMessageType.Guild));
                 }
             }
         }

@@ -15,6 +15,17 @@ namespace Intersect.Client.UnityGame.Graphics
         [SerializeField]
         protected Transform upperTranform = default;
 
+        private GameObject myGameObject;
+        private void Awake()
+        {
+            myGameObject = gameObject;
+        }
+
+        public void Draw(bool show)
+        {
+            myGameObject.SetActive(show);
+        }
+
         public void SetPosition(float x, float y)
         {
             myTranform.position = new Vector2(x + .5f, -y + .5f);
@@ -34,7 +45,7 @@ namespace Intersect.Client.UnityGame.Graphics
             upperTranform.eulerAngles = new Vector3(0, 0, zRotation);
         }
 
-        internal void Destroy()
+        public void Destroy()
         {
             Destroy(gameObject);
         }

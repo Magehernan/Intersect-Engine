@@ -13,12 +13,12 @@ namespace Intersect.GameObjects.Switches_and_Variables
     public class VariableValue
     {
 
-        private dynamic mValue;
+        private object mValue;
 
         public VariableDataTypes Type { get; set; }
 
         [NotMapped]
-        public dynamic Value { get => mValue; set => SetValue(value); }
+        public object Value { get => mValue; set => SetValue(value); }
 
         [JsonIgnore]
         public JObject Json
@@ -26,7 +26,7 @@ namespace Intersect.GameObjects.Switches_and_Variables
             get => new JObject
             {
                 {nameof(Type), (byte) Type},
-                {nameof(Value), Value}
+                {nameof(Value), Value?.ToString()}
             };
 
             set

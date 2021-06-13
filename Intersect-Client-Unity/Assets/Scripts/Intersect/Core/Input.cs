@@ -165,9 +165,6 @@ namespace Intersect.Client.Core
                                         Interface.Interface.GameUi.GameMenu.ToggleFriendsWindow();
                                         break;
 
-                                    case Control.OpenGuild:
-                                        Interface.Interface.GameUi.GameMenu.ToggleGuildWindow();
-                                        break;
 
                                     case Control.OpenSettings:
                                         Interface.Interface.GameUi.EscapeMenu.OpenSettings();
@@ -179,6 +176,10 @@ namespace Intersect.Client.Core
 
                                     case Control.OpenAdminPanel:
                                         PacketSender.SendOpenAdminWindow();
+
+                                        break;
+                                    case Control.OpenGuild:
+                                        Interface.Interface.GameUi.GameMenu.ToggleGuildWindow();
 
                                         break;
                                     case Control.MoveUp:

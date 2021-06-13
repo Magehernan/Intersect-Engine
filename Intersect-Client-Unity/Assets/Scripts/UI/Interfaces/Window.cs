@@ -42,7 +42,6 @@ namespace Intersect.Client.UnityGame
 
         public bool IsVisible => MyGameObject.activeSelf;
 
-        //protected abstract MessageTypes ShowMessage { get; }
         protected virtual bool VisibleOnInit { get; } = false;
 
         private bool initiated = false;
@@ -50,24 +49,18 @@ namespace Intersect.Client.UnityGame
         {
             if (!initiated)
             {
-                //if (ShowMessage != MessageTypes.None) {
-                //	MessageManager.AttachListener(ShowMessage, Show);
-                //}
                 initiated = true;
+                Init();
                 MyGameObject.SetActive(VisibleOnInit);
             }
         }
+
+        protected virtual void Init() { }
 
         protected virtual void Awake()
         {
             InitWindow();
         }
-
-        //protected virtual void OnDestroy() {
-        //	if (ShowMessage != MessageTypes.None && initiated) {
-        //		MessageManager.DetachListener(ShowMessage, Show);
-        //	}
-        //}
 
         public virtual void Show(object obj = null)
         {

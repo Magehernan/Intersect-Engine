@@ -9,6 +9,7 @@ using Intersect.Client.Interface.Shared;
 using Intersect.Client.Items;
 using Intersect.Client.Localization;
 using Intersect.Client.Maps;
+using Intersect.Client.MessageSystem;
 using Intersect.Core;
 using Intersect.Enums;
 using Intersect.GameObjects;
@@ -161,6 +162,7 @@ namespace Intersect.Client.Networking
         {
             Main.JoinGame();
             Globals.JoiningGame = true;
+            MessageManager.SendMessage(MessageTypes.JoinGamePacket);
         }
 
         //MapAreaPacket

@@ -1,15 +1,13 @@
-﻿using Intersect.Client.Framework.Graphics;
-using Intersect.Client.General;
+﻿using Intersect.Client.General;
 using Intersect.Client.Interface.Game;
 using Intersect.Client.Interface.Menu;
 using Intersect.Client.Interface.Shared;
 using Intersect.Client.Localization;
-using Intersect.Client.Utils;
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 namespace Intersect.Client.Interface
 {
@@ -18,6 +16,8 @@ namespace Intersect.Client.Interface
     {
         #region NoStatic
         private static Interface instance;
+        [SerializeField]
+        private CanvasScaler canvasScaler;
         [SerializeField]
         private MenuGuiBase mainMenu = default;
         [SerializeField]
@@ -56,28 +56,17 @@ namespace Intersect.Client.Interface
                 || BanMuteBox.IsVisible;
         }
 
-        internal static void ResetInputFocus()
+        public static void ResetInputFocus()
         {
             instance.StartCoroutine(UnFocusCorroutine());
         }
 
-        private static IEnumerator UnFocusCorroutine()
-        {
-            yield return null;
-
-            EventSystem eventSystem = EventSystem.current;
-            if (!eventSystem.alreadySelecting)
-            {
-                eventSystem.SetSelectedGameObject(null);
-            }
-        }
-
-        internal static bool MouseHitGui()
+        public static bool MouseHitGui()
         {
             return EventSystem.current.IsPointerOverGameObject();
         }
 
-        internal static void DrawGui()
+        public static void DrawGui()
         {
             ShowErrors();
             //sGameCanvas.RestrictToParent = false;
@@ -93,10 +82,20 @@ namespace Intersect.Client.Interface
             }
         }
 
-        internal static string[] WrapText(string mSourceText, int v, GameFont chatBubbleFont)
+        public static void ChangeResolution(Vector2 resolution)
         {
-            Singleton.Unimplemented(nameof(WrapText));
-            return null;
+            instance.canvasScaler.referenceResolution = resolution;
+        }
+
+        private static IEnumerator UnFocusCorroutine()
+        {
+            yield return null;
+
+            EventSystem eventSystem = EventSystem.current;
+            if (!eventSystem.alreadySelecting)
+            {
+                eventSystem.SetSelectedGameObject(null);
+            }
         }
 
         private static void ShowErrors()

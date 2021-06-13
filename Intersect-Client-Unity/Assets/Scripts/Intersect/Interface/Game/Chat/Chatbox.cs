@@ -1,11 +1,14 @@
 ﻿using Intersect.Client.Core.Controls;
 using Intersect.Client.General;
 using Intersect.Client.Localization;
+using Intersect.Client.MessageSystem;
 using Intersect.Client.Networking;
 using Intersect.Client.UI.Components;
 using Intersect.Client.UnityGame;
 using Intersect.Client.Utils;
 using Intersect.Enums;
+using System;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -35,8 +38,8 @@ namespace Intersect.Client.Interface.Game.Chat
         //[SerializeField]
         //private TextMeshProUGUI mChatboxText = default;
 
-        //[SerializeField]
-        //private TextMeshProUGUI mChatboxTitle = default;
+        [SerializeField]
+        private TextMeshProUGUI mChatboxTitle = default;
 
         [SerializeField]
         private Button mBtnAllTab = default;
@@ -76,30 +79,57 @@ namespace Intersect.Client.Interface.Game.Chat
         /// </summary>
         private ChatboxTab mLastTab = ChatboxTab.All;
 
+        /// <summary>
+        /// Keep track of what chat channel we were chatting in on certain tabs so we can remember this when switching back to them.
+        /// </summary>
+        private readonly Dictionary<ChatboxTab, int> mLastChatChannel = new Dictionary<ChatboxTab, int>() {
+            { ChatboxTab.All, 0 },
+            { ChatboxTab.System, 0 },
+        };
+
         protected override bool VisibleOnInit => true;
 
         public bool HasFocus => mChatboxInput.isFocused;
 
+        protected override void Init()
+        {
+            base.Init();
+            MessageManager.AttachListener(MessageTypes.JoinGamePacket, OnJoinGame);
+        }
+
+        private void OnDestroy()
+        {
+            MessageManager.DetachListener(MessageTypes.JoinGamePacket, OnJoinGame);
+        }
+
         //Init
         private void Start()
         {
-            //mChatboxTitle.text = Strings.Chatbox.title;
-            //mChatboxTitle.gameObject.SetActive(false);
+            if (mChatboxTitle != null)
+            {
+                mChatboxTitle.text = Strings.Chatbox.title;
+            }
 
-            mBtnAllTab.onClick.AddListener(() => TabButtonClicked(ChatboxTab.All));
-            mBtnLocalTab.onClick.AddListener(() => TabButtonClicked(ChatboxTab.Local));
-            mBtnPartyTab.onClick.AddListener(() => TabButtonClicked(ChatboxTab.Party));
-            mBtnGlobalTab.onClick.AddListener(() => TabButtonClicked(ChatboxTab.Global));
-            mBtnGuildTab.onClick.AddListener(() => TabButtonClicked(ChatboxTab.Guild));
-            mBtnSystemTab.onClick.AddListener(() => TabButtonClicked(ChatboxTab.System));
-
-            //mChatbar.IsHidden = true;
+            mBtnAllTab.onClick.AddListener(() => ChangeTab(ChatboxTab.All));
+            mBtnLocalTab.onClick.AddListener(() => ChangeTab(ChatboxTab.Local));
+            mBtnPartyTab.onClick.AddListener(() => ChangeTab(ChatboxTab.Party));
+            mBtnGlobalTab.onClick.AddListener(() => ChangeTab(ChatboxTab.Global));
+            mBtnGuildTab.onClick.AddListener(() => ChangeTab(ChatboxTab.Guild));
+            mBtnSystemTab.onClick.AddListener(() => ChangeTab(ChatboxTab.System));
 
             mChatboxInput.onSubmit.AddListener(ChatBoxInput_SubmitPressed);
             (mChatboxInput.placeholder as TextMeshProUGUI).text = GetDefaultInputText();
             mChatboxInput.characterLimit = Options.MaxChatLength;
+            mChatboxSendButton.onClick.AddListener(SubmitText);
 
-            //mChannelCombobox = new ComboBox(mChatboxWindow, "ChatChannelCombobox");
+            mChannelCombobox.onValueChanged.AddListener(OnChangeChannel);
+
+            // Disable this by default, since this is the default tab.
+            mBtnAllTab.interactable = false;
+        }
+
+        private void OnJoinGame(object obj)
+        {
             mChannelCombobox.ClearOptions();
             for (int i = 0; i < 4; i++)
             {
@@ -113,32 +143,10 @@ namespace Intersect.Client.Interface.Game.Chat
             }
             mChannelCombobox.value = 0;
             mChannelCombobox.RefreshShownValue();
-            //mChannelCombobox.onValueChanged.AddListener(OnChangeChannelCombo);
 
-            //mChatboxText.text = "ChatboxText";
-            //mChatboxText.Font = mChatboxWindow.Parent.Skin.DefaultFont;
-            //mChatboxText.IsHidden = true;
-
-            mChatboxSendButton.onClick.AddListener(SubmitText);
-
-            //mChatboxWindow.LoadJsonUi(GameContentManager.UI.InGame, Graphics.Renderer.GetResolutionString());
-
-
-            // Disable this by default, since this is the default tab.
-            mBtnAllTab.interactable = false;
-        }
-
-        private void TabButtonClicked(ChatboxTab tab)
-        {
-            // Enable all buttons again!
-            mBtnAllTab.interactable = tab != ChatboxTab.All;
-            mBtnGlobalTab.interactable = tab != ChatboxTab.Global;
-            mBtnLocalTab.interactable = tab != ChatboxTab.Local;
-            mBtnPartyTab.interactable = tab != ChatboxTab.Party;
-            mBtnSystemTab.interactable = tab != ChatboxTab.System;
-            mBtnGuildTab.interactable = tab != ChatboxTab.Guild;
-
-            mCurrentTab = tab;
+            mLastChatChannel[ChatboxTab.All] = 0;
+            mLastChatChannel[ChatboxTab.System] = 0;
+            ChangeTab(ChatboxTab.All);
         }
 
         public void Draw()
@@ -159,7 +167,7 @@ namespace Intersect.Client.Interface.Game.Chat
                 mReceivedMessage = false;
             }
 
-            System.Collections.Generic.List<ChatboxMsg> msgs = ChatboxMsg.GetMessages(mCurrentTab);
+            List<ChatboxMsg> msgs = ChatboxMsg.GetMessages(mCurrentTab);
             for (int i = mMessageIndex; i < msgs.Count; i++)
             {
                 ChatboxMsg msg = msgs[i];
@@ -168,6 +176,66 @@ namespace Intersect.Client.Interface.Game.Chat
                 mReceivedMessage = true;
                 mMessageIndex++;
             }
+        }
+
+        private void ChangeTab(ChatboxTab tab)
+        {
+            // Enable all buttons again!
+            mBtnAllTab.interactable = tab != ChatboxTab.All;
+            mBtnGlobalTab.interactable = tab != ChatboxTab.Global;
+            mBtnLocalTab.interactable = tab != ChatboxTab.Local;
+            mBtnPartyTab.interactable = tab != ChatboxTab.Party;
+            mBtnSystemTab.interactable = tab != ChatboxTab.System;
+            mBtnGuildTab.interactable = tab != ChatboxTab.Guild;
+
+            mLastTab = ChatboxTab.Count;
+            mCurrentTab = tab;
+            // Change the default channel we're trying to chat in based on the tab we've just selected.
+            SetChannelToTab(tab);
+        }
+        private void OnChangeChannel(int channel)
+        {
+            // If we're on the two generic tabs, remember which channel we're trying to type in so we can switch back to this channel when we decide to swap between tabs.
+            if ((mCurrentTab == ChatboxTab.All || mCurrentTab == ChatboxTab.System))
+            {
+                mLastChatChannel[mCurrentTab] = channel;
+            }
+        }
+
+        /// <summary>
+        /// Sets the selected chat channel to type in by default to the channel corresponding to the provided tab.
+        /// </summary>
+        /// <param name="tab">The tab to use for reference as to which channel we want to speak in.</param>
+        private void SetChannelToTab(ChatboxTab tab)
+        {
+            switch (tab)
+            {
+                case ChatboxTab.System:
+                case ChatboxTab.All:
+                    mChannelCombobox.value = mLastChatChannel[tab];
+                    break;
+
+                case ChatboxTab.Local:
+                    mChannelCombobox.value = 0;
+                    break;
+
+                case ChatboxTab.Global:
+                    mChannelCombobox.value = 1;
+                    break;
+
+                case ChatboxTab.Party:
+                    mChannelCombobox.value = 2;
+                    break;
+
+                case ChatboxTab.Guild:
+                    mChannelCombobox.value = 3;
+                    break;
+
+                default:
+                    // remain unchanged.
+                    return;
+            }
+            mChannelCombobox.RefreshShownValue();
         }
 
         public void SetChatboxText(string msg)

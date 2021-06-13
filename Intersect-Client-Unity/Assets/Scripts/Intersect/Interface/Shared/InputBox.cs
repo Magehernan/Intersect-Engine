@@ -55,6 +55,7 @@ namespace Intersect.Client.Interface.Shared
 
         private void Start()
         {
+            inputText.onSubmit.AddListener(v => OnClickOk());
             buttonOk.onClick.AddListener(OnClickOk);
             buttonCancel.onClick.AddListener(OnClickCancel);
         }

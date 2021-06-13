@@ -37,7 +37,7 @@ namespace Intersect.GameObjects
 
         [NotMapped]
         [JsonProperty("Value")]
-        public dynamic ValueData { get => Value.Value; set => Value.Value = value; }
+        public object ValueData { get => Value.Value; set => Value.Value = value; }
 
         [Column(nameof(Value))]
         [JsonIgnore]

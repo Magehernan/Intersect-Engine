@@ -915,7 +915,8 @@ namespace Intersect.Client.Entities
 
 
             string sprite = string.Empty;
-            byte alpha = 255;
+            // Copy the actual render color, because we'll be editing it later and don't want to overwrite it.
+            var renderColor = new Color(Color.A, Color.R, Color.G, Color.B);
 
             //If the entity has transformed, apply that sprite instead.
             for (int n = 0; n < Status.Count; n++)
@@ -936,7 +937,7 @@ namespace Intersect.Client.Entities
                     }
                     else
                     {
-                        alpha = 125;
+                        renderColor.A /= 2;
                     }
                 }
             }
@@ -1009,7 +1010,7 @@ namespace Intersect.Client.Entities
                 //Check for player
                 if (PLAYER.Equals(paperdoll, StringComparison.Ordinal))
                 {
-                    entityRender.Draw(z, texture.GetSprite(Options.AnimatedSprites.Contains(sprite) ? AnimationFrame : spriteX, spriteY), alpha);
+                    entityRender.Draw(z, texture.GetSprite(Options.AnimatedSprites.Contains(sprite) ? AnimationFrame : spriteX, spriteY), renderColor.A);
                     continue;
                 }
 
@@ -1059,7 +1060,7 @@ namespace Intersect.Client.Entities
 
                             if (paperdollTex != null)
                             {
-                                entityRender.Draw(z, paperdollTex.GetSprite(spriteX, spriteY), alpha);
+                                entityRender.Draw(z, paperdollTex.GetSprite(spriteX, spriteY), renderColor.A);
                                 continue;
                             }
                         }
@@ -1436,6 +1437,7 @@ namespace Intersect.Client.Entities
         //Chatting
         public void AddChatBubble(string text)
         {
+
             if (string.IsNullOrEmpty(text))
             {
                 return;
@@ -1457,9 +1459,32 @@ namespace Intersect.Client.Entities
                 return;
             }
 
+
+            //Don't draw if the entity is hidden
+            bool isHidding = HideEntity;
+
+            if (!isHidding)
+            {
+                //If unit is stealthed, don't render unless the entity is the player or party member.
+                if (this != Globals.Me && !(this is Player player && Globals.Me.IsInMyParty(player)))
+                {
+                    for (int n = 0; n < Status.Count; n++)
+                    {
+                        if (Status[n].Type == StatusTypes.Stealth)
+                        {
+                            isHidding = true;
+                            break;
+                        }
+                    }
+                }
+            }
+
+
+
             for (int i = chatBubbleRenderers.Count - 1; i >= 0; i--)
             {
                 ChatBubbleRenderer chatBubble = chatBubbleRenderers[i];
+                chatBubble.Draw(!isHidding);
                 if (chatBubble.TimeOut())
                 {
                     chatBubble.Destroy();
@@ -1471,6 +1496,7 @@ namespace Intersect.Client.Entities
             {
                 ChatBubbleRenderer chatBubble = UnityFactory.GetChatBubble(Name, entityRender.ChatBubbleParent);
                 chatBubble.Set(text);
+                chatBubble.Draw(!isHidding);
                 chatBubbleRenderers.Add(chatBubble);
             }
         }

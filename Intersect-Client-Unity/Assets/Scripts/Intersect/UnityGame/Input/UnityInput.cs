@@ -2,6 +2,8 @@
 using Intersect.Client.Framework.Input;
 using System;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 using UInput = UnityEngine.Input;
 
 namespace Intersect.Client.UnityGame.Input
@@ -51,6 +53,8 @@ namespace Intersect.Client.UnityGame.Input
 
         }
 
+
+
         public override void Update()
         {
             if (!UInput.anyKey)
@@ -69,6 +73,36 @@ namespace Intersect.Client.UnityGame.Input
                     Core.Input.OnKeyReleased(key);
                 }
             }
+
+
+            if (UInput.GetKeyDown(KeyCode.Tab))
+            {
+                EventSystem system = EventSystem.current;
+                GameObject curObj = system.currentSelectedGameObject;
+                GameObject nextObj = null;
+                if (!curObj)
+                {
+                    nextObj = system.firstSelectedGameObject;
+                }
+                else
+                {
+                    Selectable curSelect = curObj.GetComponent<Selectable>();
+                    Selectable nextSelect =
+                        UInput.GetKey(KeyCode.LeftShift) || UInput.GetKey(KeyCode.RightShift)
+                            ? curSelect.FindSelectableOnUp()
+                            : curSelect.FindSelectableOnDown();
+                    if (nextSelect)
+                    {
+                        nextObj = nextSelect.gameObject;
+                    }
+                }
+                if (nextObj)
+                {
+                    system.SetSelectedGameObject(nextObj, new BaseEventData(system));
+                }
+            }
         }
     }
 }
+
+

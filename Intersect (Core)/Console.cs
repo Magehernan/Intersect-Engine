@@ -30,7 +30,7 @@ namespace Intersect
         static Console()
         {
             //Instance = new Console();
-            SystemConsole.CancelKeyPress += (sender, args) => CancelKeyPress?.Invoke(sender, args);
+            //SystemConsole.CancelKeyPress += (sender, args) => CancelKeyPress?.Invoke(sender, args);
 
             mDefaultError = Error;
             mDefaultOut = Out;

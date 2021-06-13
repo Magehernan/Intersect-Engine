@@ -28,11 +28,11 @@
         OpenCharacterInfo,
         OpenParties,
         OpenSpells,
+        OpenGuild,
         OpenFriends,
         OpenSettings,
         OpenDebugger,
         OpenAdminPanel,
         ToggleGui,
-        OpenGuild,
     }
 }

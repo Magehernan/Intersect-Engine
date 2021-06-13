@@ -495,9 +495,9 @@ namespace Intersect.Client.Maps
         {
             int width = Options.MapWidth;
             int height = Options.MapHeight;
-            for (int x = 0; x < width; x++)
+            for (int y = 0; y < height; y++)
             {
-                for (int y = 0; y < height; y++)
+                for (int x = 0; x < width; x++)
                 {
                     MapAttribute att = Attributes[x, y];
                     if (att == null)

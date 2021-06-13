@@ -6496,161 +6496,272 @@ MonoBehaviour:
   - name: Blood.png
     texture: {fileID: 2800000, guid: e669997bef502c44ab7142c0a841f616, type: 3}
     sprites:
-    - {fileID: 21300000, guid: e669997bef502c44ab7142c0a841f616, type: 3}
+    - {fileID: 5684327315910396547, guid: e669997bef502c44ab7142c0a841f616, type: 3}
+    - {fileID: -1189345562256101844, guid: e669997bef502c44ab7142c0a841f616, type: 3}
+    - {fileID: 5722333315871558701, guid: e669997bef502c44ab7142c0a841f616, type: 3}
+    - {fileID: 3909595645733894167, guid: e669997bef502c44ab7142c0a841f616, type: 3}
+    - {fileID: -374699494892873770, guid: e669997bef502c44ab7142c0a841f616, type: 3}
+    - {fileID: 5281811327271454313, guid: e669997bef502c44ab7142c0a841f616, type: 3}
+    - {fileID: -2044344349260785571, guid: e669997bef502c44ab7142c0a841f616, type: 3}
+    - {fileID: 1295801174852132906, guid: e669997bef502c44ab7142c0a841f616, type: 3}
+    - {fileID: 1921429812043486609, guid: e669997bef502c44ab7142c0a841f616, type: 3}
+    - {fileID: 1383461657061368076, guid: e669997bef502c44ab7142c0a841f616, type: 3}
+    - {fileID: 5335947261288081930, guid: e669997bef502c44ab7142c0a841f616, type: 3}
+    - {fileID: -420561362150945321, guid: e669997bef502c44ab7142c0a841f616, type: 3}
+    - {fileID: -7858715718292287355, guid: e669997bef502c44ab7142c0a841f616, type: 3}
+    - {fileID: -1034289341275851498, guid: e669997bef502c44ab7142c0a841f616, type: 3}
+    - {fileID: 5052171841915474803, guid: e669997bef502c44ab7142c0a841f616, type: 3}
+    - {fileID: 746896397948701829, guid: e669997bef502c44ab7142c0a841f616, type: 3}
+    - {fileID: -7567482132543009634, guid: e669997bef502c44ab7142c0a841f616, type: 3}
     spriteColumns: -1
     width: 544
     height: 32
-    spriteWidth: 544
+    spriteWidth: 32
     spriteHeight: 32
     hasTexture: 1
   - name: Bonetoss.png
     texture: {fileID: 2800000, guid: 8127e8fbb9ce0d140b7820de6b96669f, type: 3}
     sprites:
-    - {fileID: 21300000, guid: 8127e8fbb9ce0d140b7820de6b96669f, type: 3}
+    - {fileID: -5573242064241392703, guid: 8127e8fbb9ce0d140b7820de6b96669f, type: 3}
+    - {fileID: 5502270661649101876, guid: 8127e8fbb9ce0d140b7820de6b96669f, type: 3}
+    - {fileID: 3207360722871764020, guid: 8127e8fbb9ce0d140b7820de6b96669f, type: 3}
+    - {fileID: -7275212232892675075, guid: 8127e8fbb9ce0d140b7820de6b96669f, type: 3}
     spriteColumns: -1
     width: 128
     height: 32
-    spriteWidth: 128
+    spriteWidth: 32
     spriteHeight: 32
     hasTexture: 1
   - name: Bubbles.png
     texture: {fileID: 2800000, guid: 63fc58e0336a33544a217d940589d326, type: 3}
     sprites:
-    - {fileID: 21300000, guid: 63fc58e0336a33544a217d940589d326, type: 3}
+    - {fileID: 4078796110908485188, guid: 63fc58e0336a33544a217d940589d326, type: 3}
+    - {fileID: -7938878928584171511, guid: 63fc58e0336a33544a217d940589d326, type: 3}
+    - {fileID: -5417141958962910980, guid: 63fc58e0336a33544a217d940589d326, type: 3}
+    - {fileID: 5179279333322180978, guid: 63fc58e0336a33544a217d940589d326, type: 3}
+    - {fileID: -6963593870422336085, guid: 63fc58e0336a33544a217d940589d326, type: 3}
+    - {fileID: 5028680128492604440, guid: 63fc58e0336a33544a217d940589d326, type: 3}
+    - {fileID: 2638978548525320615, guid: 63fc58e0336a33544a217d940589d326, type: 3}
+    - {fileID: -1112529114769193714, guid: 63fc58e0336a33544a217d940589d326, type: 3}
     spriteColumns: -1
     width: 512
     height: 64
-    spriteWidth: 512
+    spriteWidth: 64
     spriteHeight: 64
     hasTexture: 1
   - name: Campfire.png
     texture: {fileID: 2800000, guid: 4181c75645fe17d40bb8f677222a3a62, type: 3}
     sprites:
-    - {fileID: 21300000, guid: 4181c75645fe17d40bb8f677222a3a62, type: 3}
+    - {fileID: -3591475534189650280, guid: 4181c75645fe17d40bb8f677222a3a62, type: 3}
+    - {fileID: -4704261264892754323, guid: 4181c75645fe17d40bb8f677222a3a62, type: 3}
+    - {fileID: -324634693526516157, guid: 4181c75645fe17d40bb8f677222a3a62, type: 3}
+    - {fileID: 7039333144802297169, guid: 4181c75645fe17d40bb8f677222a3a62, type: 3}
+    - {fileID: -4304248787414823906, guid: 4181c75645fe17d40bb8f677222a3a62, type: 3}
     spriteColumns: -1
     width: 160
     height: 42
-    spriteWidth: 160
+    spriteWidth: 32
     spriteHeight: 42
     hasTexture: 1
   - name: Campfire_Alt.png
     texture: {fileID: 2800000, guid: a8f19bbd03ed62e499eec453321e6394, type: 3}
     sprites:
-    - {fileID: 21300000, guid: a8f19bbd03ed62e499eec453321e6394, type: 3}
+    - {fileID: -7627470891368327924, guid: a8f19bbd03ed62e499eec453321e6394, type: 3}
+    - {fileID: 6970220491479119911, guid: a8f19bbd03ed62e499eec453321e6394, type: 3}
+    - {fileID: 7841407304979128030, guid: a8f19bbd03ed62e499eec453321e6394, type: 3}
+    - {fileID: 6335905902037638797, guid: a8f19bbd03ed62e499eec453321e6394, type: 3}
+    - {fileID: -8130970538032270151, guid: a8f19bbd03ed62e499eec453321e6394, type: 3}
     spriteColumns: -1
     width: 160
     height: 42
-    spriteWidth: 160
+    spriteWidth: 32
     spriteHeight: 42
     hasTexture: 1
   - name: Emote_Concern.png
     texture: {fileID: 2800000, guid: 20fc4496197bf7a4880445c7f827d5e8, type: 3}
     sprites:
-    - {fileID: 21300000, guid: 20fc4496197bf7a4880445c7f827d5e8, type: 3}
+    - {fileID: 8822622201206494762, guid: 20fc4496197bf7a4880445c7f827d5e8, type: 3}
+    - {fileID: -5859066283681348312, guid: 20fc4496197bf7a4880445c7f827d5e8, type: 3}
+    - {fileID: -4387823530532848408, guid: 20fc4496197bf7a4880445c7f827d5e8, type: 3}
+    - {fileID: 6611316209375115931, guid: 20fc4496197bf7a4880445c7f827d5e8, type: 3}
+    - {fileID: 2733403396549536734, guid: 20fc4496197bf7a4880445c7f827d5e8, type: 3}
+    - {fileID: 7051352683519577758, guid: 20fc4496197bf7a4880445c7f827d5e8, type: 3}
     spriteColumns: -1
     width: 192
     height: 32
-    spriteWidth: 192
+    spriteWidth: 32
     spriteHeight: 32
     hasTexture: 1
   - name: Emote_Laugh.png
     texture: {fileID: 2800000, guid: b7bad8901bcfe8d4c983f2c390265190, type: 3}
     sprites:
-    - {fileID: 21300000, guid: b7bad8901bcfe8d4c983f2c390265190, type: 3}
+    - {fileID: -1777820013580708565, guid: b7bad8901bcfe8d4c983f2c390265190, type: 3}
+    - {fileID: -4897317365851548858, guid: b7bad8901bcfe8d4c983f2c390265190, type: 3}
+    - {fileID: 7927485340642971383, guid: b7bad8901bcfe8d4c983f2c390265190, type: 3}
+    - {fileID: -1197292372963837776, guid: b7bad8901bcfe8d4c983f2c390265190, type: 3}
+    - {fileID: 5924201479261568037, guid: b7bad8901bcfe8d4c983f2c390265190, type: 3}
+    - {fileID: 1832067584240269784, guid: b7bad8901bcfe8d4c983f2c390265190, type: 3}
     spriteColumns: -1
     width: 192
     height: 32
-    spriteWidth: 192
+    spriteWidth: 32
     spriteHeight: 32
     hasTexture: 1
   - name: Emote_LookAround.png
     texture: {fileID: 2800000, guid: ea70e50f38ad05440b6c846ba7f9821f, type: 3}
     sprites:
-    - {fileID: 21300000, guid: ea70e50f38ad05440b6c846ba7f9821f, type: 3}
+    - {fileID: 6061002240880397280, guid: ea70e50f38ad05440b6c846ba7f9821f, type: 3}
+    - {fileID: 219484630234792691, guid: ea70e50f38ad05440b6c846ba7f9821f, type: 3}
+    - {fileID: -107137908633541040, guid: ea70e50f38ad05440b6c846ba7f9821f, type: 3}
+    - {fileID: -6162788866679002929, guid: ea70e50f38ad05440b6c846ba7f9821f, type: 3}
+    - {fileID: -2236926663550247084, guid: ea70e50f38ad05440b6c846ba7f9821f, type: 3}
+    - {fileID: 2619320958469206164, guid: ea70e50f38ad05440b6c846ba7f9821f, type: 3}
     spriteColumns: -1
     width: 192
     height: 32
-    spriteWidth: 192
+    spriteWidth: 32
     spriteHeight: 32
     hasTexture: 1
   - name: Emote_Smile.png
     texture: {fileID: 2800000, guid: 6611c4a9d03f428479c3b4d82d4b1268, type: 3}
     sprites:
-    - {fileID: 21300000, guid: 6611c4a9d03f428479c3b4d82d4b1268, type: 3}
+    - {fileID: 2208988813119379577, guid: 6611c4a9d03f428479c3b4d82d4b1268, type: 3}
+    - {fileID: -4596503280330374917, guid: 6611c4a9d03f428479c3b4d82d4b1268, type: 3}
+    - {fileID: -7502545748798612044, guid: 6611c4a9d03f428479c3b4d82d4b1268, type: 3}
+    - {fileID: 8049950678861269680, guid: 6611c4a9d03f428479c3b4d82d4b1268, type: 3}
+    - {fileID: -4215148278114054480, guid: 6611c4a9d03f428479c3b4d82d4b1268, type: 3}
+    - {fileID: -2723837000765332816, guid: 6611c4a9d03f428479c3b4d82d4b1268, type: 3}
     spriteColumns: -1
     width: 192
     height: 32
-    spriteWidth: 192
+    spriteWidth: 32
     spriteHeight: 32
     hasTexture: 1
   - name: Emote_Wink.png
     texture: {fileID: 2800000, guid: f92a8cb328cb3f74cb356d35d62d67f5, type: 3}
     sprites:
-    - {fileID: 21300000, guid: f92a8cb328cb3f74cb356d35d62d67f5, type: 3}
+    - {fileID: -7698667444838852656, guid: f92a8cb328cb3f74cb356d35d62d67f5, type: 3}
+    - {fileID: -9061272543318423311, guid: f92a8cb328cb3f74cb356d35d62d67f5, type: 3}
+    - {fileID: -84581301130333681, guid: f92a8cb328cb3f74cb356d35d62d67f5, type: 3}
+    - {fileID: -6063827625052598530, guid: f92a8cb328cb3f74cb356d35d62d67f5, type: 3}
+    - {fileID: -2310727353079785951, guid: f92a8cb328cb3f74cb356d35d62d67f5, type: 3}
+    - {fileID: 3415613782621902937, guid: f92a8cb328cb3f74cb356d35d62d67f5, type: 3}
     spriteColumns: -1
     width: 192
     height: 32
-    spriteWidth: 192
+    spriteWidth: 32
     spriteHeight: 32
     hasTexture: 1
   - name: Healing.png
     texture: {fileID: 2800000, guid: a47120c4999ea2c4080cf6727eb17d54, type: 3}
     sprites:
-    - {fileID: 21300000, guid: a47120c4999ea2c4080cf6727eb17d54, type: 3}
+    - {fileID: -4456225766891094810, guid: a47120c4999ea2c4080cf6727eb17d54, type: 3}
+    - {fileID: -7762663329385297786, guid: a47120c4999ea2c4080cf6727eb17d54, type: 3}
+    - {fileID: 3558075068266398223, guid: a47120c4999ea2c4080cf6727eb17d54, type: 3}
+    - {fileID: 6839294066618301473, guid: a47120c4999ea2c4080cf6727eb17d54, type: 3}
+    - {fileID: 8681650029592108746, guid: a47120c4999ea2c4080cf6727eb17d54, type: 3}
+    - {fileID: 2108245848111956312, guid: a47120c4999ea2c4080cf6727eb17d54, type: 3}
+    - {fileID: 8341685546480067207, guid: a47120c4999ea2c4080cf6727eb17d54, type: 3}
+    - {fileID: 5559072985509864851, guid: a47120c4999ea2c4080cf6727eb17d54, type: 3}
+    - {fileID: -5417920434218156622, guid: a47120c4999ea2c4080cf6727eb17d54, type: 3}
+    - {fileID: 8508036967491191324, guid: a47120c4999ea2c4080cf6727eb17d54, type: 3}
+    - {fileID: -7717223717773095552, guid: a47120c4999ea2c4080cf6727eb17d54, type: 3}
+    - {fileID: -6723982408571676764, guid: a47120c4999ea2c4080cf6727eb17d54, type: 3}
+    - {fileID: -4873551827386989881, guid: a47120c4999ea2c4080cf6727eb17d54, type: 3}
+    - {fileID: 2079374784648366466, guid: a47120c4999ea2c4080cf6727eb17d54, type: 3}
+    - {fileID: 6888652902990462048, guid: a47120c4999ea2c4080cf6727eb17d54, type: 3}
+    - {fileID: 507124741427724364, guid: a47120c4999ea2c4080cf6727eb17d54, type: 3}
     spriteColumns: -1
     width: 512
     height: 32
-    spriteWidth: 512
+    spriteWidth: 32
     spriteHeight: 32
     hasTexture: 1
   - name: Particles.png
     texture: {fileID: 2800000, guid: 39708de188abbc642a2f58d413a2b0e3, type: 3}
     sprites:
-    - {fileID: 21300000, guid: 39708de188abbc642a2f58d413a2b0e3, type: 3}
+    - {fileID: -6189289526238714443, guid: 39708de188abbc642a2f58d413a2b0e3, type: 3}
+    - {fileID: -7699328018653931357, guid: 39708de188abbc642a2f58d413a2b0e3, type: 3}
+    - {fileID: -186343322299716006, guid: 39708de188abbc642a2f58d413a2b0e3, type: 3}
+    - {fileID: -6285070063975550627, guid: 39708de188abbc642a2f58d413a2b0e3, type: 3}
+    - {fileID: 3166776664542397520, guid: 39708de188abbc642a2f58d413a2b0e3, type: 3}
+    - {fileID: 2220281700739884154, guid: 39708de188abbc642a2f58d413a2b0e3, type: 3}
+    - {fileID: -1955746717543178443, guid: 39708de188abbc642a2f58d413a2b0e3, type: 3}
+    - {fileID: 3847788528400304303, guid: 39708de188abbc642a2f58d413a2b0e3, type: 3}
     spriteColumns: -1
     width: 256
     height: 32
-    spriteWidth: 256
+    spriteWidth: 32
     spriteHeight: 32
     hasTexture: 1
   - name: Rings.png
     texture: {fileID: 2800000, guid: b114c5504cf48ab4fad26f57d54d2551, type: 3}
     sprites:
-    - {fileID: 21300000, guid: b114c5504cf48ab4fad26f57d54d2551, type: 3}
+    - {fileID: -6322795371227026142, guid: b114c5504cf48ab4fad26f57d54d2551, type: 3}
+    - {fileID: 4163338723299661763, guid: b114c5504cf48ab4fad26f57d54d2551, type: 3}
+    - {fileID: 6436461461561869349, guid: b114c5504cf48ab4fad26f57d54d2551, type: 3}
+    - {fileID: -6475315002443621497, guid: b114c5504cf48ab4fad26f57d54d2551, type: 3}
+    - {fileID: 732341864460277218, guid: b114c5504cf48ab4fad26f57d54d2551, type: 3}
+    - {fileID: 3797226848584332582, guid: b114c5504cf48ab4fad26f57d54d2551, type: 3}
+    - {fileID: -1532996772713589581, guid: b114c5504cf48ab4fad26f57d54d2551, type: 3}
+    - {fileID: 1075673462804012373, guid: b114c5504cf48ab4fad26f57d54d2551, type: 3}
+    - {fileID: 6631836781738976247, guid: b114c5504cf48ab4fad26f57d54d2551, type: 3}
     spriteColumns: -1
     width: 288
     height: 32
-    spriteWidth: 288
+    spriteWidth: 32
     spriteHeight: 32
     hasTexture: 1
   - name: Rings_Reversed.png
     texture: {fileID: 2800000, guid: 78d8e1fffe339884ab15ec4a540182b9, type: 3}
     sprites:
-    - {fileID: 21300000, guid: 78d8e1fffe339884ab15ec4a540182b9, type: 3}
+    - {fileID: 3763723996941347835, guid: 78d8e1fffe339884ab15ec4a540182b9, type: 3}
+    - {fileID: 2036466247495775968, guid: 78d8e1fffe339884ab15ec4a540182b9, type: 3}
+    - {fileID: 71511485353071251, guid: 78d8e1fffe339884ab15ec4a540182b9, type: 3}
+    - {fileID: 3375457379889927444, guid: 78d8e1fffe339884ab15ec4a540182b9, type: 3}
+    - {fileID: -9037014259397929768, guid: 78d8e1fffe339884ab15ec4a540182b9, type: 3}
+    - {fileID: -4922371897505205722, guid: 78d8e1fffe339884ab15ec4a540182b9, type: 3}
+    - {fileID: -6923791435105942390, guid: 78d8e1fffe339884ab15ec4a540182b9, type: 3}
+    - {fileID: 5240284740341322405, guid: 78d8e1fffe339884ab15ec4a540182b9, type: 3}
+    - {fileID: 877898770419581923, guid: 78d8e1fffe339884ab15ec4a540182b9, type: 3}
     spriteColumns: -1
     width: 288
     height: 32
-    spriteWidth: 288
+    spriteWidth: 32
     spriteHeight: 32
     hasTexture: 1
   - name: Slashing.png
     texture: {fileID: 2800000, guid: 500a86aa990bd4344a3d56fc12d2053e, type: 3}
     sprites:
-    - {fileID: 21300000, guid: 500a86aa990bd4344a3d56fc12d2053e, type: 3}
+    - {fileID: 6690193932010932814, guid: 500a86aa990bd4344a3d56fc12d2053e, type: 3}
+    - {fileID: -1940095051517637542, guid: 500a86aa990bd4344a3d56fc12d2053e, type: 3}
+    - {fileID: 7832828429087586543, guid: 500a86aa990bd4344a3d56fc12d2053e, type: 3}
+    - {fileID: 734166076102333033, guid: 500a86aa990bd4344a3d56fc12d2053e, type: 3}
+    - {fileID: 1558749403878837263, guid: 500a86aa990bd4344a3d56fc12d2053e, type: 3}
+    - {fileID: -8770599769255239733, guid: 500a86aa990bd4344a3d56fc12d2053e, type: 3}
+    - {fileID: 7796464611353874783, guid: 500a86aa990bd4344a3d56fc12d2053e, type: 3}
+    - {fileID: 843601689436399447, guid: 500a86aa990bd4344a3d56fc12d2053e, type: 3}
+    - {fileID: 3981979052472283516, guid: 500a86aa990bd4344a3d56fc12d2053e, type: 3}
+    - {fileID: -4665108512255504745, guid: 500a86aa990bd4344a3d56fc12d2053e, type: 3}
     spriteColumns: -1
     width: 640
     height: 64
-    spriteWidth: 640
+    spriteWidth: 64
     spriteHeight: 64
     hasTexture: 1
   - name: Strike.png
     texture: {fileID: 2800000, guid: 6167ea6cb0e6f144083202d80a218b81, type: 3}
     sprites:
-    - {fileID: 21300000, guid: 6167ea6cb0e6f144083202d80a218b81, type: 3}
+    - {fileID: 7894308883384308476, guid: 6167ea6cb0e6f144083202d80a218b81, type: 3}
+    - {fileID: 8716443635218818940, guid: 6167ea6cb0e6f144083202d80a218b81, type: 3}
+    - {fileID: -5317898649937906389, guid: 6167ea6cb0e6f144083202d80a218b81, type: 3}
+    - {fileID: -4747580147343137777, guid: 6167ea6cb0e6f144083202d80a218b81, type: 3}
+    - {fileID: 7501370564805236846, guid: 6167ea6cb0e6f144083202d80a218b81, type: 3}
+    - {fileID: -3887696609655398641, guid: 6167ea6cb0e6f144083202d80a218b81, type: 3}
     spriteColumns: -1
     width: 384
     height: 64
-    spriteWidth: 384
+    spriteWidth: 64
     spriteHeight: 64
     hasTexture: 1
   items:

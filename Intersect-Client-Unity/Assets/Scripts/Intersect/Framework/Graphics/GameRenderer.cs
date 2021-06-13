@@ -26,8 +26,6 @@ namespace Intersect.Client.Framework.Graphics
 
         public abstract bool DisplayModeChanged();
 
-        public abstract void Close();
-
         public abstract List<string> GetValidVideoModes();
     }
 

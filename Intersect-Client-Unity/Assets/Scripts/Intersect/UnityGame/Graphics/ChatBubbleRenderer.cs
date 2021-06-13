@@ -1,5 +1,4 @@
 ﻿using Intersect.Client.General;
-using System;
 using TMPro;
 using UnityEngine;
 
@@ -11,6 +10,12 @@ namespace Intersect.Client.UnityGame.Graphics
         private TextMeshProUGUI textMessage;
 
         private long mRenderTimer;
+        private GameObject myGameObject;
+
+        private void Awake()
+        {
+            myGameObject = gameObject;
+        }
 
         public void Set(string message)
         {
@@ -26,6 +31,11 @@ namespace Intersect.Client.UnityGame.Graphics
         public bool TimeOut()
         {
             return mRenderTimer < Globals.System.GetTimeMs();
+        }
+
+        public void Draw(bool show)
+        {
+            myGameObject.SetActive(show);
         }
     }
 }

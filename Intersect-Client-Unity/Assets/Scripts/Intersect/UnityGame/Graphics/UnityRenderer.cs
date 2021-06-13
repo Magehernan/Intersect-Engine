@@ -2,11 +2,8 @@
 using Intersect.Client.Framework.Graphics;
 using Intersect.Client.General;
 using Intersect.Client.Localization;
-using Intersect.Client.Utils;
-using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using U = UnityEngine;
 
 namespace Intersect.Client.UnityGame.Graphics
@@ -102,11 +99,7 @@ namespace Intersect.Client.UnityGame.Graphics
             }
             U.Application.targetFrameRate = targetFPS;
             U.Screen.SetResolution(width, height, Globals.Database.FullScreen, targetFPS);
-        }
-
-        public override void Close()
-        {
-            Singleton.Unimplemented(nameof(Close));
+            Interface.Interface.ChangeResolution(new U.Vector2(width, height));
         }
 
         public override bool DisplayModeChanged()
@@ -166,10 +159,10 @@ namespace Intersect.Client.UnityGame.Graphics
                     continue;
                 }
 
-                if (!U.Screen.resolutions.Any(r => r.width == resolution.X && r.height == resolution.Y))
-                {
-                    continue;
-                }
+                //if (!U.Screen.resolutions.Any(r => r.width == resolution.X && r.height == resolution.Y))
+                //{
+                //    continue;
+                //}
 
                 mValidVideoModes.Add(resolution.ToString());
             }

@@ -102,6 +102,7 @@ namespace Intersect.Client.Entities
         {
             if (Hidden || disposed)
             {
+                animationRenderer.Draw(false);
                 return;
             }
 
@@ -197,6 +198,7 @@ namespace Intersect.Client.Entities
             }
 
             animationRenderer.SetPosition(mRenderX, mRenderY);
+            animationRenderer.Draw(true);
         }
 
         public void EndDraw()
