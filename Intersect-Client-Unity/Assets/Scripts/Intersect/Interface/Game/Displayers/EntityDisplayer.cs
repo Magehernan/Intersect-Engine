@@ -51,7 +51,7 @@ namespace Intersect.Client.Interface.Game.Displayers
                 return;
             }
 
-            if (!string.IsNullOrWhiteSpace(entity.Face))
+            if (!string.IsNullOrWhiteSpace(entity.Face) && !"None".Equals(entity.Face))
             {
 
                 if (paperdolls[0].Equals(entity.Face))
@@ -141,7 +141,7 @@ namespace Intersect.Client.Interface.Game.Displayers
 
                 if (image != null)
                 {
-                    image.enabled = !string.IsNullOrEmpty(paperdoll);
+                    image.enabled = paperdollTex != null;
                 }
 
                 paperdolls[z] = paperdoll;

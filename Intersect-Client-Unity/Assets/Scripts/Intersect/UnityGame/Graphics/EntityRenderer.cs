@@ -79,10 +79,17 @@ namespace Intersect.Client.UnityGame.Graphics
             spriteRenderer.enabled = true;
             if (z == 0)
             {
-                //seteamos el height que se usa en otros lados
-                height = sprite.rect.height;
-                spriteRendererContainer.localPosition = new Vector2(0, height / sprite.pixelsPerUnit * .5f); 
-                return;
+                if (sprite != null)
+                {
+                    //seteamos el height que se usa en otros lados
+                    height = sprite.rect.height;
+                    spriteRendererContainer.localPosition = new Vector2(0, height / sprite.pixelsPerUnit * .5f);
+                }
+                else
+                {
+                    height = Options.TileHeight;
+                    spriteRendererContainer.localPosition = new Vector2(0, .5f);
+                }
             }
         }
 

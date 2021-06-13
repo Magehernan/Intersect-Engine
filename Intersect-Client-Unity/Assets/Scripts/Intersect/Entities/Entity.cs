@@ -953,13 +953,7 @@ namespace Intersect.Client.Entities
 
 
             GameTexture texture = AnimatedTextures[SpriteAnimation] ?? Texture;
-
-            if (texture == null)
-            {
-                entityRender.HideAll();
-                return;
-            }
-
+            bool hasTexture = texture != null;
             int spriteX;
             int spriteY = 1;
             switch (Dir)
@@ -992,15 +986,21 @@ namespace Intersect.Client.Entities
                 spriteX = SpriteFrame;
             }
 
+            float spriteHeight = 1f;
+            if (hasTexture)
+            {
+                spriteHeight = texture.SpriteHeight / texture.PixelPerUnits;
+            }
+
             WorldRect.X = worldPos.X;
-            WorldRect.Y = worldPos.Y - texture.SpriteHeight / texture.PixelPerUnits;
+            WorldRect.Y = worldPos.Y - spriteHeight;
             WorldRect.Width = 1;
-            WorldRect.Height = texture.SpriteHeight / texture.PixelPerUnits;
+            WorldRect.Height = spriteHeight;
 
             Utils.Draw.Rectangle(WorldRect, Color.White);
 
             entityRender.SetPosition(worldPos.X, worldPos.Y);
-            entityRender.SetHeight(texture.SpriteHeight);
+            entityRender.SetHeight(hasTexture ? texture.SpriteHeight : Options.TileHeight);
 
             //Order the layers of paperdolls and sprites
             List<string> paperdollOrder = Options.PaperdollOrder[spriteY];
@@ -1010,7 +1010,7 @@ namespace Intersect.Client.Entities
                 //Check for player
                 if (PLAYER.Equals(paperdoll, StringComparison.Ordinal))
                 {
-                    entityRender.Draw(z, texture.GetSprite(Options.AnimatedSprites.Contains(sprite) ? AnimationFrame : spriteX, spriteY), renderColor.A);
+                    entityRender.Draw(z, hasTexture ? texture.GetSprite(Options.AnimatedSprites.Contains(sprite) ? AnimationFrame : spriteX, spriteY) : null, renderColor.A);
                     continue;
                 }
 
@@ -1084,14 +1084,14 @@ namespace Intersect.Client.Entities
         public Pointf GetCenterPos()
         {
             Pointf centerPos = worldPos;
-            centerPos.X += Options.TileWidth * .5f / Texture.PixelPerUnits;
+            centerPos.X += .5f;
             if (Texture != null)
             {
                 centerPos.Y -= Texture.SpriteHeight * .5f / Texture.PixelPerUnits;
             }
             else
             {
-                centerPos.Y += Options.TileHeight * .5f / Texture.PixelPerUnits;
+                centerPos.Y += .5f;
             }
 
 

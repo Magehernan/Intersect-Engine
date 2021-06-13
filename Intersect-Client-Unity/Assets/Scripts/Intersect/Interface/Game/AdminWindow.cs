@@ -342,7 +342,7 @@ namespace Intersect.Client.Interface.Game
             int selected = dropdownSprite.value;
             if (HasName())
             {
-                PacketSender.SendAdminAction(new SetSpriteAction(inputName.text, selected == 0 ? string.Empty : dropdownSprite.options[selected].text));
+                PacketSender.SendAdminAction(new SetSpriteAction(inputName.text, dropdownSprite.options[selected].text));
             }
         }
 
@@ -351,7 +351,7 @@ namespace Intersect.Client.Interface.Game
             int selected = dropdownFace.value;
             if (HasName())
             {
-                PacketSender.SendAdminAction(new SetFaceAction(inputName.text, selected == 0 ? string.Empty : dropdownFace.options[selected].text));
+                PacketSender.SendAdminAction(new SetFaceAction(inputName.text, dropdownFace.options[selected].text));
             }
         }
 
