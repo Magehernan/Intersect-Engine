@@ -50,12 +50,12 @@ namespace Intersect.Client.UnityGame
             if (!initiated)
             {
                 initiated = true;
-                Init();
+                OnInit();
                 MyGameObject.SetActive(VisibleOnInit);
             }
         }
 
-        protected virtual void Init() { }
+        protected virtual void OnInit() { }
 
         protected virtual void Awake()
         {

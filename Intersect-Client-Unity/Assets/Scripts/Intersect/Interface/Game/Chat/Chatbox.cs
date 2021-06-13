@@ -91,9 +91,9 @@ namespace Intersect.Client.Interface.Game.Chat
 
         public bool HasFocus => mChatboxInput.isFocused;
 
-        protected override void Init()
+        protected override void OnInit()
         {
-            base.Init();
+            base.OnInit();
             MessageManager.AttachListener(MessageTypes.JoinGamePacket, OnJoinGame);
         }
 
