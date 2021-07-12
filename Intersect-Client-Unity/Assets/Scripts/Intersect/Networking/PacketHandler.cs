@@ -757,19 +757,6 @@ namespace Intersect.Client.Networking
                 }
 
                 entity.SortStatuses();
-
-                if (Interface.Interface.GameUi != null)
-                {
-                    //If its you or your target, update the entity box.
-                    if (en.Id == Globals.Me.Id && Interface.Interface.GameUi.playerBox != null)
-                    {
-                        Interface.Interface.GameUi.playerBox.UpdateStatuses = true;
-                    }
-                    else if (en.Id == Globals.Me.TargetIndex && Globals.Me.TargetBox != null)
-                    {
-                        Globals.Me.TargetBox.UpdateStatuses = true;
-                    }
-                }
             }
         }
 
@@ -842,19 +829,6 @@ namespace Intersect.Client.Networking
             }
 
             en.SortStatuses();
-
-            if (Interface.Interface.GameUi != null)
-            {
-                //If its you or your target, update the entity box.
-                if (id == Globals.Me.Id && Interface.Interface.GameUi.playerBox != null)
-                {
-                    Interface.Interface.GameUi.playerBox.UpdateStatuses = true;
-                }
-                else if (id == Globals.Me.TargetIndex && Globals.Me.TargetBox != null)
-                {
-                    Globals.Me.TargetBox.UpdateStatuses = true;
-                }
-            }
         }
 
         //EntityStatsPacket

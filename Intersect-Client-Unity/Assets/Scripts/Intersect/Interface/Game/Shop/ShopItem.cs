@@ -40,20 +40,30 @@ namespace Intersect.Client.Interface.Game.Shop
 
         internal void Set(GameObjects.ShopItem item)
         {
+            if (item is null)
+            {
+                HideInfo();
+                return;
+            }
+
             ItemBase itemBase = ItemBase.Get(item.ItemId);
+            if (itemBase is null)
+            {
+                HideInfo();
+                return;
+            }
+
             displayer.Set(itemBase);
             displayer.SetValue(Strings.Shop.costs.ToString(item.CostItemQuantity, itemBase.Name));
-            if (itemBase != null)
-            {
-                Draw(itemBase);
-            }
-            else
-            {
-                displayer.IconVisible(false);
-                displayer.TextBottomVisible(false);
-                displayer.TextTopVisible(false);
-                currentItemId = Guid.Empty;
-            }
+            Draw(itemBase);
+        }
+
+        private void HideInfo()
+        {
+            displayer.IconVisible(false);
+            displayer.TextBottomVisible(false);
+            displayer.TextTopVisible(false);
+            currentItemId = Guid.Empty;
         }
 
         private void Draw(ItemBase itemBase)

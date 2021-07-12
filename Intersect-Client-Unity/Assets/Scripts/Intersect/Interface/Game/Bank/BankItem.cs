@@ -33,14 +33,14 @@ namespace Intersect.Client.Interface.Game.Bank
         {
             if (item is null)
             {
-                Hide();
+                HideInfo();
                 return;
             }
 
             ItemBase itemBase = ItemBase.Get(item.ItemId);
             if (itemBase is null)
             {
-                Hide();
+                HideInfo();
                 return;
             }
 
@@ -48,7 +48,7 @@ namespace Intersect.Client.Interface.Game.Bank
             Draw(item, itemBase);
         }
 
-        private void Hide()
+        private void HideInfo()
         {
             displayer.IconVisible(false);
             displayer.TextBottomVisible(false);

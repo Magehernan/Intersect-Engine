@@ -443,15 +443,7 @@ namespace Intersect.Client.Entities
                         {
                             Log.Warn($"'{nameof(Interface.Interface.GameUi.playerBox)}' is null.");
                         }
-                        else
-                        {
-                            Interface.Interface.GameUi.playerBox.UpdateStatuses = true;
-                        }
                     }
-                }
-                else if (Id != Guid.Empty && Id == Globals.Me.TargetIndex)
-                {
-                    Globals.Me.TargetBox.UpdateStatuses = true;
                 }
             }
         }

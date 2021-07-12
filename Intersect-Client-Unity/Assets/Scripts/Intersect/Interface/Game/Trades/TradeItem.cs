@@ -39,22 +39,32 @@ namespace Intersect.Client.Interface.Game.Trades
             currentAmt = 0;
             displayer.SetDescriptionPosition(descTransformDisplay, descOffset, descPivot);
         }
-
+        
         internal void Set(Item item)
         {
+            if (item is null)
+            {
+                HideInfo();
+                return;
+            }
+
             ItemBase itemBase = ItemBase.Get(item.ItemId);
+            if (itemBase is null)
+            {
+                HideInfo();
+                return;
+            }
+
             displayer.Set(itemBase, item);
-            if (itemBase != null)
-            {
-                Draw(item, itemBase);
-            }
-            else
-            {
-                displayer.IconVisible(false);
-                displayer.TextBottomVisible(false);
-                displayer.TextTopVisible(false);
-                currentItemId = Guid.Empty;
-            }
+            Draw(item, itemBase);
+        }
+
+        private void HideInfo()
+        {
+            displayer.IconVisible(false);
+            displayer.TextBottomVisible(false);
+            displayer.TextTopVisible(false);
+            currentItemId = Guid.Empty;
         }
 
         private void Draw(Item item, ItemBase itemBase)

@@ -27,17 +27,27 @@ namespace Intersect.Client.Interface.Game.Spells
 
         internal void Set(Spell spell)
         {
+            if (spell is null)
+            {
+                HideInfo();
+                return;
+            }
+
             SpellBase spellBase = SpellBase.Get(spell.SpellId);
+            if (spellBase is null)
+            {
+                HideInfo();
+                return;
+            }
+
             displayer.Set(spellBase: spellBase);
-            if (spellBase != null)
-            {
-                Draw(spell, spellBase);
-            }
-            else
-            {
-                mCurrentSpellId = Guid.Empty;
-                displayer.IconVisible(false);
-            }
+            Draw(spell, spellBase);
+        }
+
+        private void HideInfo()
+        {
+            mCurrentSpellId = Guid.Empty;
+            displayer.IconVisible(false);
         }
 
         private void Draw(Spell spell, SpellBase spellBase)
@@ -88,7 +98,6 @@ namespace Intersect.Client.Interface.Game.Spells
             }
         }
 
-
         public void OnPointerClick(PointerEventData eventData)
         {
             if (Guid.Empty.Equals(mCurrentSpellId))
@@ -132,5 +141,4 @@ namespace Intersect.Client.Interface.Game.Spells
             }
         }
     }
-
 }

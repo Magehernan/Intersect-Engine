@@ -77,9 +77,7 @@ namespace Intersect.Client.Interface.Game.EntityPanel
         private bool mInitialized;
         private readonly Dictionary<Guid, SpellStatus> mActiveStatuses = new Dictionary<Guid, SpellStatus>();
 
-        public bool UpdateStatuses { get; set; }
         public Entity MyEntity { get; private set; }
-
 
         private void Start()
         {
@@ -161,11 +159,7 @@ namespace Intersect.Client.Interface.Game.EntityPanel
 
             UpdateGuildButton();
 
-            if (UpdateStatuses)
-            {
-                UpdateSpellStatus();
-                UpdateStatuses = false;
-            }
+            UpdateSpellStatus();
 
             foreach (KeyValuePair<Guid, SpellStatus> itm in mActiveStatuses)
             {
