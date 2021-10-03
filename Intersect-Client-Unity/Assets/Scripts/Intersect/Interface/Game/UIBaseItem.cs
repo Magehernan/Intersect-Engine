@@ -1,4 +1,6 @@
 ﻿using Intersect.Client.Interface.Game.Displayers;
+using Intersect.Client.Utils;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -19,9 +21,37 @@ namespace Intersect.Client.Interface.Game
 
         protected bool isDraggable = true;
 
+        private PointerEventData pointerEventData = null;
+
         private void Awake()
         {
             myTransform = transform;
+        }
+
+        private void OnDisable()
+        {
+            if (!isDraggable)
+            {
+                return;
+            }
+            
+            if(Singleton.Instance == null)
+            {
+                return;
+            }
+
+            Singleton.Instance.StartCoroutine(EndDragOnDisableCoroutine());
+        }
+
+        private IEnumerator EndDragOnDisableCoroutine()
+        {
+            yield return null;
+            if (pointerEventData != null)
+            {
+                pointerEventData.pointerDrag = null;
+            }
+
+            OnEndDrag(null);
         }
 
         public virtual void Setup(int index, Transform descTransformDisplay)
@@ -32,29 +62,48 @@ namespace Intersect.Client.Interface.Game
 
         public void OnBeginDrag(PointerEventData eventData)
         {
-            if (isDraggable)
+            if (!isDraggable)
             {
-                displayer.Drag(Interface.GameUi.MyRectTransform, true);
+                return;
             }
+
+            pointerEventData = eventData;
+
+            displayer.Drag(Interface.GameUi.MyRectTransform, true);
         }
 
         public void OnEndDrag(PointerEventData eventData)
         {
-            if (isDraggable)
+            if (!isDraggable)
             {
-                displayer.Drag(myTransform, false);
+                return;
             }
+
+            pointerEventData = null;
+
+            displayer.Drag(myTransform, false);
         }
 
         public void OnDrag(PointerEventData eventData)
         {
-            if (isDraggable)
+            if (!isDraggable)
             {
-                displayer.SetPosition(eventData.position);
+                return;
             }
+
+            displayer.SetPosition(eventData.position);
         }
 
-        public abstract void OnDrop(PointerEventData eventData);
+        public void OnDrop(PointerEventData eventData)
+        {
+            if (!isDraggable)
+            {
+                return;
+            }
 
+            Drop(eventData);
+        }
+
+        public abstract void Drop(PointerEventData eventData);
     }
 }

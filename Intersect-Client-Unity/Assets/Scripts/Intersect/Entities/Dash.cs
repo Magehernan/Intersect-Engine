@@ -46,8 +46,8 @@ namespace Intersect.Client.Entities {
 				mStartTime = Globals.System.GetTimeMs();
 				mStartXCoord = en.OffsetX;
 				mStartYCoord = en.OffsetY;
-				mEndXCoord = endMap.GetX() + mEndX * Options.TileWidth - (startMap.GetX() + en.X * Options.TileWidth);
-				mEndYCoord = endMap.GetY() + mEndY * Options.TileHeight - (startMap.GetY() + en.Y * Options.TileHeight);
+				mEndXCoord = endMap.GetX() + mEndX - (startMap.GetX() + en.X);
+				mEndYCoord = endMap.GetY() + mEndY - (startMap.GetY() + en.Y);
 				if (mChangeDirection > -1) {
 					en.Dir = (byte)mChangeDirection;
 				}

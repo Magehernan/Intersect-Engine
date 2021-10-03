@@ -101,7 +101,7 @@ namespace Intersect.Client.Interface.Game.Inventory
             Globals.Me.TryPickupItem(MapId, TileIndex, MyItem.UniqueId);
         }
 
-        public override void OnDrop(PointerEventData eventData)
+        public override void Drop(PointerEventData eventData)
         {
         }
     }

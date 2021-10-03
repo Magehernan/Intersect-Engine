@@ -299,7 +299,7 @@ namespace Intersect.Client.Interface.Game.Hotbar
             }
         }
 
-        public override void OnDrop(PointerEventData eventData)
+        public override void Drop(PointerEventData eventData)
         {
             if (eventData.pointerDrag == null)
             {

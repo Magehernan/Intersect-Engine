@@ -113,7 +113,7 @@ namespace Intersect.Client.Interface.Game.Bag
             }
         }
 
-        public override void OnDrop(PointerEventData eventData)
+        public override void Drop(PointerEventData eventData)
         {
             if (eventData.pointerDrag == null)
             {

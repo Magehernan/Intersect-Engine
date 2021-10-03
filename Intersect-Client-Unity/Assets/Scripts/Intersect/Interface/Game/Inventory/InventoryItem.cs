@@ -175,7 +175,7 @@ namespace Intersect.Client.Interface.Game.Inventory
             }
         }
 
-        public override void OnDrop(PointerEventData eventData)
+        public override void Drop(PointerEventData eventData)
         {
             if (eventData.pointerDrag == null)
             {
